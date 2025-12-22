@@ -5,6 +5,8 @@
 
 const express = require('express');
 const path = require('path');
+const routes = require('./routes');
+const logger = require('./middlewares/logger');
 
 // Express 앱 생성
 const app = express();
@@ -12,44 +14,39 @@ const app = express();
 // 환경 변수에서 포트 가져오기 (기본값: 3000)
 const PORT = process.env.PORT || 3000;
 
+// 프로젝트 루트 디렉토리 경로
+const ROOT_DIR = path.join(__dirname, '..');
+
 // ============================================
 // 미들웨어 설정
 // ============================================
 
-// 정적 파일 제공 (루트 디렉토리)
-app.use(express.static(path.join(__dirname)));
+// 정적 파일 제공 (src, public 디렉토리)
+app.use('/src', express.static(path.join(ROOT_DIR, 'src')));
+app.use(express.static(path.join(ROOT_DIR, 'public')));
 
 // JSON 파싱 미들웨어
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // 로깅 미들웨어 (개발용)
-app.use((req, res, next) => {
-    const timestamp = new Date().toISOString();
-    console.log(`[${timestamp}] ${req.method} ${req.url}`);
-    next();
-});
+app.use(logger);
 
 // ============================================
 // 라우트 설정
 // ============================================
 
-// 루트 경로 - index.html 제공
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
-});
+// 모든 라우트를 routes/index.js에서 가져옴
+app.use('/', routes);
 
-// 404 에러 핸들링
-app.use((req, res) => {
-    res.status(404).sendFile(path.join(__dirname, 'index.html'));
-});
-
+// ============================================
 // 전역 에러 핸들링
+// ============================================
+
 app.use((err, req, res, next) => {
     console.error('서버 에러:', err.stack);
-    res.status(500).json({
-        error: '서버 내부 오류가 발생했습니다.',
-        message: process.env.NODE_ENV === 'development' ? err.message : undefined
-    });
+    // 500 에러 페이지를 200 상태코드로 제공
+    res.status(200).sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Error', 'Error500.html'));
 });
 
 // ============================================
@@ -61,13 +58,16 @@ app.listen(PORT, () => {
     console.log('  DOTELINE 웹서버가 시작되었습니다!');
     console.log('========================================');
     console.log(`  🌐 로컬 주소: http://localhost:${PORT}`);
-    console.log(`  📁 루트 디렉토리: ${__dirname}`);
+    console.log(`  📁 루트 디렉토리: ${ROOT_DIR}`);
     console.log(`  ⏰ 시작 시간: ${new Date().toLocaleString('ko-KR')}`);
     console.log('========================================\n');
     console.log('  서버를 종료하려면 Ctrl + C를 누르세요.\n');
 });
 
+// ============================================
 // 프로세스 종료 처리
+// ============================================
+
 process.on('SIGTERM', () => {
     console.log('\n서버를 종료합니다...');
     process.exit(0);

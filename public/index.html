@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOTELINE - LED 드라이버 칩 솔루션</title>
+    <title>DOTELINE</title>
     <style>
         /* 로딩 화면 스타일 */
         #loading-screen {
@@ -54,7 +54,7 @@
     <script>
         /**
          * 메인 페이지 동적 렌더링 스크립트
-         * pages/mainPage.html의 내용을 로드하여 렌더링
+         * src/pages/Main/Main.html의 내용을 로드하여 렌더링
          */
         class PageLoader {
             constructor() {
@@ -74,7 +74,7 @@
             }
 
             async loadMainPage() {
-                const response = await fetch('./pages/mainPage.html');
+                const response = await fetch('/src/pages/Main/Main.html');
 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);

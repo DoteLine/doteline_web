@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="/src/components/Header/Header.css">
+<header id="header" class="header">
+  <nav class="header-nav">
+    <div class="header-container">
+      <a href="/" class="header-logo">
+        DOTE LINE
+      </a>
+
+      <!-- Desktop Menu -->
+      <ul class="header-menu desktop-menu">
+        <li><a href="/info" class="menu-link">회사 소개</a></li>
+        <li><a href="#products" class="menu-link">제품</a></li>
+        <li><a href="#colors" class="menu-link">솔루션</a></li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="메뉴">
+        <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <ul class="mobile-menu-list">
+        <li><a href="/info" class="menu-link">회사 소개</a></li>
+        <li><a href="#products" class="menu-link">제품</a></li>
+        <li><a href="#colors" class="menu-link">솔루션</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<script>
+// Mobile Menu Functionality
+(function() {
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  if (!mobileMenuBtn || !mobileMenu) return;
+
+  mobileMenuBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('active');
+
+    if (isOpen) {
+      mobileMenu.classList.remove('active');
+      mobileMenuBtn.classList.remove('active');
+    } else {
+      mobileMenu.classList.add('active');
+      mobileMenuBtn.classList.add('active');
+    }
+  });
+
+  // Close menu when clicking on menu links
+  const mobileMenuLinks = mobileMenu.querySelectorAll('.menu-link');
+  mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('active');
+      mobileMenuBtn.classList.remove('active');
+    });
+  });
+})();
+</script>

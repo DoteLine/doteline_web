@@ -1,0 +1,39 @@
+/* Company Info Page Styles */
+.page-wrapper {
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+.company-info-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 6rem 1rem 4rem;
+  min-height: 60vh;
+}
+
+.company-info-main h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 1rem;
+}
+
+.company-info-main p {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.75;
+}
+
+@media (min-width: 640px) {
+  .company-info-main {
+    padding: 8rem 1.5rem 4rem;
+  }
+
+  .company-info-main h1 {
+    font-size: 2.5rem;
+  }
+
+  .company-info-main p {
+    font-size: 1.125rem;
+  }
+}
