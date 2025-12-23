@@ -1,0 +1,262 @@
+/**
+ * Carousel Component Styles
+ * Swiper.js를 사용한 이미지 캐러셀 스타일
+ */
+
+/* ===============================================
+   캐러셀 섹션
+   =============================================== */
+.carousel-section {
+  width: 100%;
+  padding: 4rem 1rem;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f8fafc 50%,
+    #ffffff 100%
+  );
+  overflow: hidden;
+}
+
+.carousel-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===============================================
+   헤더
+   =============================================== */
+.carousel-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.carousel-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e1b4b;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-subtitle {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+/* ===============================================
+   Swiper 캐러셀
+   =============================================== */
+.carousel-swiper {
+  width: 100%;
+  padding: 3rem 0 4rem;
+  position: relative;
+}
+
+/* 슬라이드 컨테이너 */
+.carousel-swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+/* 슬라이드 콘텐츠 */
+.carousel-slide-content {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+              0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+/* 이미지 */
+.carousel-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+}
+
+/* 슬라이드 정보 */
+.carousel-slide-info {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.carousel-slide-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e1b4b;
+  margin-bottom: 0.5rem;
+}
+
+.carousel-slide-description {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* ===============================================
+   슬라이드 상태별 스타일
+   =============================================== */
+
+/* 기본 슬라이드 (비활성) - 원형 마스크와 낮은 투명도 */
+.carousel-swiper .swiper-slide {
+  opacity: 0.2;
+  transform: scale(0.7);
+}
+
+.carousel-swiper .swiper-slide:not(.swiper-slide-active):not(.swiper-slide-prev):not(.swiper-slide-next) .carousel-slide-content {
+  clip-path: circle(40% at 50% 50%);
+}
+
+/* 이전/다음 슬라이드 (양옆) - 약간 작게 */
+.carousel-swiper .swiper-slide-prev,
+.carousel-swiper .swiper-slide-next {
+  opacity: 0.6;
+  transform: scale(0.85);
+}
+
+.carousel-swiper .swiper-slide-prev .carousel-slide-content,
+.carousel-swiper .swiper-slide-next .carousel-slide-content {
+  clip-path: none;
+}
+
+/* 활성 슬라이드 (중앙) - 강조 */
+.carousel-swiper .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+  z-index: 10;
+}
+
+.carousel-swiper .swiper-slide-active .carousel-slide-content {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  clip-path: none;
+}
+
+/* ===============================================
+   네비게이션 버튼
+   =============================================== */
+.carousel-button-prev,
+.carousel-button-next {
+  width: 50px;
+  height: 50px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.carousel-button-prev:hover,
+.carousel-button-next:hover {
+  background: #f1f5f9;
+  transform: scale(1.1);
+}
+
+.carousel-button-prev::after,
+.carousel-button-next::after {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #1e1b4b;
+}
+
+/* 버튼 위치 조정 */
+.carousel-button-prev {
+  left: 1rem;
+}
+
+.carousel-button-next {
+  right: 1rem;
+}
+
+/* ===============================================
+   페이지네이션
+   =============================================== */
+.carousel-pagination {
+  bottom: 0 !important;
+}
+
+.carousel-pagination .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  background: #cbd5e1;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.carousel-pagination .swiper-pagination-bullet-active {
+  background: #3b82f6;
+  width: 32px;
+  border-radius: 6px;
+}
+
+/* ===============================================
+   반응형 디자인
+   =============================================== */
+
+/* 모바일 */
+@media (max-width: 640px) {
+  .carousel-section {
+    padding: 3rem 0.5rem;
+  }
+
+  .carousel-title {
+    font-size: 1.5rem;
+  }
+
+  .carousel-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .carousel-image {
+    height: 200px;
+  }
+
+  .carousel-button-prev,
+  .carousel-button-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-button-prev::after,
+  .carousel-button-next::after {
+    font-size: 1rem;
+  }
+}
+
+/* 태블릿 */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .carousel-image {
+    height: 250px;
+  }
+}
+
+/* 데스크톱 */
+@media (min-width: 1025px) {
+  .carousel-section {
+    padding: 6rem 2rem;
+  }
+
+  .carousel-title {
+    font-size: 2.5rem;
+  }
+
+  .carousel-subtitle {
+    font-size: 1.125rem;
+  }
+
+  .carousel-image {
+    height: 350px;
+  }
+
+  .carousel-button-prev {
+    left: 2rem;
+  }
+
+  .carousel-button-next {
+    right: 2rem;
+  }
+}

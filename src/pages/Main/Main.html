@@ -6,9 +6,13 @@
   <meta name="description" content="도트라인 - 프리미엄 LED 드라이버 칩 솔루션">
   <title>DOTELINE</title>
 
+  <!-- Swiper CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
   <!-- Stylesheets -->
   <link rel="stylesheet" href="/src/components/Header/Header.css">
   <link rel="stylesheet" href="/src/components/Footer/Footer.css">
+  <link rel="stylesheet" href="/src/components/Carousel/Carousel.css">
   <link rel="stylesheet" href="/src/pages/Main/Main.css">
 </head>
 <body>
@@ -257,6 +261,84 @@
       </div>
     </section>
 
+    <!-- Carousel Component -->
+    <section class="carousel-section">
+      <div class="carousel-container">
+        <!-- 섹션 제목 -->
+        <div class="carousel-header">
+          <h2 class="carousel-title">DOTELINE의 특별한 제품들</h2>
+          <p class="carousel-subtitle">프리미엄 품질을 경험해보세요</p>
+        </div>
+
+        <!-- Swiper 캐러셀 -->
+        <div class="swiper carousel-swiper">
+          <div class="swiper-wrapper">
+            <!-- 슬라이드 1 -->
+            <div class="swiper-slide">
+              <div class="carousel-slide-content">
+                <img src="/resources/carousel/slide1.jpg" alt="제품 이미지 1" class="carousel-image">
+                <div class="carousel-slide-info">
+                  <h3 class="carousel-slide-title">프리미엄 제품 1</h3>
+                  <p class="carousel-slide-description">최상의 품질을 자랑하는 제품</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 슬라이드 2 -->
+            <div class="swiper-slide">
+              <div class="carousel-slide-content">
+                <img src="/resources/carousel/slide2.jpg" alt="제품 이미지 2" class="carousel-image">
+                <div class="carousel-slide-info">
+                  <h3 class="carousel-slide-title">프리미엄 제품 2</h3>
+                  <p class="carousel-slide-description">혁신적인 디자인의 제품</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 슬라이드 3 -->
+            <div class="swiper-slide">
+              <div class="carousel-slide-content">
+                <img src="/resources/carousel/slide3.jpg" alt="제품 이미지 3" class="carousel-image">
+                <div class="carousel-slide-info">
+                  <h3 class="carousel-slide-title">프리미엄 제품 3</h3>
+                  <p class="carousel-slide-description">트렌디한 스타일의 제품</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 슬라이드 4 -->
+            <div class="swiper-slide">
+              <div class="carousel-slide-content">
+                <img src="/resources/carousel/slide4.jpg" alt="제품 이미지 4" class="carousel-image">
+                <div class="carousel-slide-info">
+                  <h3 class="carousel-slide-title">프리미엄 제품 4</h3>
+                  <p class="carousel-slide-description">편안함을 추구하는 제품</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- 슬라이드 5 -->
+            <div class="swiper-slide">
+              <div class="carousel-slide-content">
+                <img src="/resources/carousel/slide5.jpg" alt="제품 이미지 5" class="carousel-image">
+                <div class="carousel-slide-info">
+                  <h3 class="carousel-slide-title">프리미엄 제품 5</h3>
+                  <p class="carousel-slide-description">세련된 감성의 제품</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 이전/다음 버튼 -->
+          <div class="swiper-button-prev carousel-button-prev"></div>
+          <div class="swiper-button-next carousel-button-next"></div>
+
+          <!-- 페이지네이션 -->
+          <div class="swiper-pagination carousel-pagination"></div>
+        </div>
+      </div>
+    </section>
+
     <!-- Store Location Section -->
     <section id="stores" class="stores-section section-animate">
       <div class="container">
@@ -342,8 +424,13 @@
     <div id="footer-container"></div>
   </div>
 
+  <!-- Swiper JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
   <!-- JavaScript -->
   <script src="/src/utils/loadComponent.js"></script>
+  <script src="/src/components/Header/Header.js"></script>
+  <script src="/src/components/Carousel/Carousel.js"></script>
   <script src="/src/pages/Main/Main.js"></script>
 </body>
 </html>

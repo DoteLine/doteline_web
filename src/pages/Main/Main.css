@@ -74,9 +74,10 @@ body {
 
 .hero-buttons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 0.75rem;
   justify-content: center;
+  flex-wrap: wrap;
   max-width: 28rem;
   margin: 0 auto;
 }
@@ -119,7 +120,7 @@ body {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   align-items: center;
 }
@@ -167,7 +168,7 @@ body {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
@@ -214,7 +215,7 @@ body {
 
 .products-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -408,7 +409,7 @@ body {
 
 .stores-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
 }
 
@@ -652,7 +653,6 @@ body {
   }
 
   .products-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
 
@@ -728,17 +728,11 @@ body {
 /* Desktop */
 @media (min-width: 768px) {
   .about-grid {
-    grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
   }
 
   .stats-grid {
-    grid-template-columns: repeat(4, 1fr);
     gap: 2.5rem;
-  }
-
-  .stores-grid {
-    grid-template-columns: repeat(2, 1fr);
   }
 
   .store-map {
@@ -785,14 +779,6 @@ body {
     font-size: 3rem;
   }
 
-  .products-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .product-card-wide {
-    grid-column: span 1;
-  }
-
   .calculator-card {
     padding: 3rem;
   }
@@ -821,7 +807,7 @@ body {
 
 .second-hero-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 30% 70%;
   gap: 2rem;
   align-items: center;
 }
@@ -868,7 +854,7 @@ body {
 
 .products-grid-new {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
 }
 
@@ -928,7 +914,7 @@ body {
 
 .solutions-grid-new {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 0.5rem;
 }
 
