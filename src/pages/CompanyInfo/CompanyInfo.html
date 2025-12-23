@@ -9,6 +9,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/src/components/Header/Header.css">
     <link rel="stylesheet" href="/src/components/Footer/Footer.css">
+    <link rel="stylesheet" href="/src/components/Loading/Loading.css">
     <link rel="stylesheet" href="/src/pages/CompanyInfo/CompanyInfo.css">
 </head>
 <body>
@@ -16,9 +17,74 @@
         <!-- Header Component -->
         <div id="header-container"></div>
 
+        <!-- Company Info Main Content -->
         <main class="company-info-main">
-            <h1>회사 소개 페이지</h1>
-            <p>회사 소개 내용이 들어갈 예정입니다.</p>
+            <!-- Hero Section -->
+            <section class="company-hero">
+                <div class="company-hero-content">
+                    <h2 class="company-hero-title">프리미엄의 도트를 이끌어가는</h2>
+                    <h1 class="company-hero-title-main">도트라인</h1>
+                </div>
+            </section>
+
+            <!-- Image Sections -->
+            <section class="company-images-container">
+                <!-- Image 1 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info1.jpg" alt="회사 소개 1" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 2 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info2.jpg" alt="회사 소개 2" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 3 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info3.jpg" alt="회사 소개 3" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 4 -->
+                <div class="company-image-section section-animate slide-from-left">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info4.jpg" alt="회사 소개 4" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 5 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info5.jpg" alt="회사 소개 5" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 6 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info6.jpg" alt="회사 소개 6" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 7 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info7.jpg" alt="회사 소개 7" class="company-image" loading="lazy">
+                    </div>
+                </div>
+
+                <!-- Image 8 -->
+                <div class="company-image-section section-animate">
+                    <div class="image-wrapper">
+                        <img src="/resources/company-info/info8.jpg" alt="회사 소개 8" class="company-image" loading="lazy">
+                    </div>
+                </div>
+            </section>
         </main>
 
         <!-- Footer Component -->
@@ -26,7 +92,9 @@
     </div>
 
     <!-- JavaScript -->
+    <script src="/src/components/Loading/Loading.js"></script>
     <script src="/src/utils/loadComponent.js"></script>
+    <script src="/src/components/Header/Header.js"></script>
     <script src="/src/pages/CompanyInfo/CompanyInfo.js"></script>
 </body>
 </html>

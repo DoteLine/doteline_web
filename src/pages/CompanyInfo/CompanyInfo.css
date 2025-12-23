@@ -1,39 +1,270 @@
-/* Company Info Page Styles */
+/* ===============================================
+   Company Info Page Styles
+   프로페셔널하고 반응형인 회사 소개 페이지
+   =============================================== */
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .page-wrapper {
   min-height: 100vh;
-  background-color: #f8fafc;
+  background-color: #ffffff;
 }
 
 .company-info-main {
-  max-width: 1280px;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+/* ===============================================
+   Hero Section
+   =============================================== */
+.company-hero {
+    position: relative;
+    margin-top: 64px;
+    padding: 3rem 1rem;
+    background: linear-gradient(
+            135deg,
+            #f1f5f9 0%,
+            #dbeafe 40%,
+            #e0e7ff 60%,
+            #f1f5f9 100%
+    );
+    text-align: center;
+}
+
+.company-hero-content {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 6rem 1rem 4rem;
-  min-height: 60vh;
 }
 
-.company-info-main h1 {
-  font-size: 2rem;
+.company-hero-title {
+  font-size: 1.75rem;
   font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 1rem;
+  color: #1e1b4b;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
 }
 
-.company-info-main p {
-  font-size: 1rem;
+.company-hero-title-main {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1e1b4b;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slideInFromLeft 0.8s ease-out forwards;
+  animation-delay: 0.2s;
+}
+
+.company-hero-subtitle {
+  font-size: 0.95rem;
   color: #475569;
-  line-height: 1.75;
+  line-height: 1.6;
 }
 
+/* ===============================================
+   Images Container
+   =============================================== */
+.company-images-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.company-image-section {
+  margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.company-image-section.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image Wrapper - 반응형 이미지 컨테이너 */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  background-color: #f1f5f9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.image-wrapper:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-4px);
+}
+
+/* Company Image - 핵심: 이미지가 잘리지 않고 전체가 보이도록 */
+.company-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* 이미지 전체를 보여주되 비율 유지 */
+  object-position: center;
+  background-color: #ffffff;
+}
+
+/* ===============================================
+   Tablet (640px+)
+   =============================================== */
 @media (min-width: 640px) {
-  .company-info-main {
-    padding: 8rem 1.5rem 4rem;
+  .company-hero {
+    margin-top: 80px;
+    padding: 4rem 1.5rem;
   }
 
-  .company-info-main h1 {
+  .company-hero-title {
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .company-hero-title-main {
     font-size: 2.5rem;
   }
 
-  .company-info-main p {
+  .company-hero-subtitle {
     font-size: 1.125rem;
+  }
+
+  .company-images-container {
+    padding: 3rem 1.5rem;
+  }
+
+  .company-image-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .image-wrapper {
+    border-radius: 1rem;
+  }
+}
+
+/* ===============================================
+   Desktop (768px+)
+   =============================================== */
+@media (min-width: 768px) {
+  .company-hero {
+    padding: 5rem 2rem;
+  }
+
+  .company-hero-title {
+    font-size: 2.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .company-hero-title-main {
+    font-size: 3.25rem;
+  }
+
+  .company-hero-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .company-images-container {
+    padding: 4rem 2rem;
+  }
+
+  .company-image-section {
+    margin-bottom: 3rem;
+  }
+
+  .image-wrapper {
+    border-radius: 1.25rem;
+  }
+}
+
+/* ===============================================
+   Large Desktop (1024px+)
+   =============================================== */
+@media (min-width: 1024px) {
+  .company-hero {
+    padding: 6rem 2rem;
+  }
+
+  .company-hero-title {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .company-hero-title-main {
+    font-size: 4rem;
+  }
+
+  .company-hero-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .company-images-container {
+    padding: 5rem 2rem;
+  }
+
+  .company-image-section {
+    margin-bottom: 3.5rem;
+  }
+
+  .image-wrapper {
+    border-radius: 1.5rem;
+  }
+}
+
+/* ===============================================
+   Extra Large Desktop (1280px+)
+   =============================================== */
+@media (min-width: 1280px) {
+  .company-images-container {
+    padding: 6rem 3rem;
+  }
+
+  .company-image-section {
+    margin-bottom: 4rem;
+  }
+}
+
+/* ===============================================
+   Scroll Animations
+   =============================================== */
+.section-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.section-animate.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 왼쪽에서 슬라이드 애니메이션 (이미지 4번 전용) */
+.section-animate.slide-from-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 0.8s ease-out;
+}
+
+.section-animate.slide-from-left.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* 왼쪽에서 슬라이드 키프레임 애니메이션 */
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

@@ -21,8 +21,9 @@ const ROOT_DIR = path.join(__dirname, '..');
 // 미들웨어 설정
 // ============================================
 
-// 정적 파일 제공 (src, public 디렉토리)
+// 정적 파일 제공 (src, public, resources 디렉토리)
 app.use('/src', express.static(path.join(ROOT_DIR, 'src')));
+app.use('/resources', express.static(path.join(ROOT_DIR, 'resources')));
 app.use(express.static(path.join(ROOT_DIR, 'public')));
 
 // JSON 파싱 미들웨어
