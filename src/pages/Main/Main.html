@@ -13,7 +13,9 @@
   <link rel="stylesheet" href="/src/components/Header/Header.css">
   <link rel="stylesheet" href="/src/components/Footer/Footer.css">
   <link rel="stylesheet" href="/src/components/Carousel/Carousel.css">
+  <link rel="stylesheet" href="/src/components/SolutionSection/SolutionSection.css">
   <link rel="stylesheet" href="/src/pages/Main/Main.css">
+  <link rel="stylesheet" href="/src/pages/Main/MainResponsive.css">
 </head>
 <body>
   <div class="page-wrapper">
@@ -154,109 +156,38 @@
     </section>
 
     <!-- Product Solutions Section -->
-    <section id="solutions" class="solutions-section-new section-animate">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title-center">제품 솔루션</h2>
-          <p class="section-subtitle">다양한 산업 분야를 위한 맞춤형 LED 솔루션</p>
+    <!-- Variant A: Text Left, Image Right (Outdoor Billboard) -->
+    <section id="solutions" class="solution-section section-animate" data-variant="text-left">
+      <div class="solution-section__container">
+        <div class="solution-section__content">
+          <span class="solution-section__label">Outdoor Billboard</span>
+          <h2 class="solution-section__headline">대규모 옥외 광고를 위한 프리미엄 LED 솔루션</h2>
+          <p class="solution-section__description">
+            도심 속 랜드마크가 되는 대형 LED 디스플레이를 위한 최적화된 드라이버 칩 솔루션입니다.
+            높은 밝기와 뛰어난 안정성으로 24시간 운영 환경에서도 완벽한 화질을 보장합니다.
+          </p>
+          <a href="#contact" class="solution-section__cta">자세히 보기</a>
         </div>
+        <div class="solution-section__image">
+          <img src="/src/resources/solutions/outdoor-billboard.jpg" alt="Outdoor LED Billboard in urban environment" loading="lazy">
+        </div>
+      </div>
+    </section>
 
-        <div class="solutions-grid-new">
-          <div class="solution-card-new">
-            <div class="solution-image-placeholder">
-              <svg class="solution-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-              </svg>
-            </div>
-            <div class="solution-content-new">
-              <h3 class="solution-title-new">솔루션 1</h3>
-              <p class="solution-description-new">산업별 맞춤형 LED 드라이버 솔루션</p>
-            </div>
-          </div>
-
-          <div class="solution-card-new">
-            <div class="solution-image-placeholder">
-              <svg class="solution-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-              </svg>
-            </div>
-            <div class="solution-content-new">
-              <h3 class="solution-title-new">솔루션 2</h3>
-              <p class="solution-description-new">산업별 맞춤형 LED 드라이버 솔루션</p>
-            </div>
-          </div>
-
-          <div class="solution-card-new">
-            <div class="solution-image-placeholder">
-              <svg class="solution-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-              </svg>
-            </div>
-            <div class="solution-content-new">
-              <h3 class="solution-title-new">솔루션 3</h3>
-              <p class="solution-description-new">산업별 맞춤형 LED 드라이버 솔루션</p>
-            </div>
-          </div>
-
-          <div class="solution-card-new">
-            <div class="solution-image-placeholder">
-              <svg class="solution-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-              </svg>
-            </div>
-            <div class="solution-content-new">
-              <h3 class="solution-title-new">솔루션 4</h3>
-              <p class="solution-description-new">산업별 맞춤형 LED 드라이버 솔루션</p>
-            </div>
-          </div>
-
-          <div class="solution-card-new">
-            <div class="solution-image-placeholder">
-              <svg class="solution-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-              </svg>
-            </div>
-            <div class="solution-content-new">
-              <h3 class="solution-title-new">솔루션 5</h3>
-              <p class="solution-description-new">산업별 맞춤형 LED 드라이버 솔루션</p>
-            </div>
-          </div>
-
-          <div class="solution-card-new">
-            <div class="solution-image-placeholder">
-              <svg class="solution-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-              </svg>
-            </div>
-            <div class="solution-content-new">
-              <h3 class="solution-title-new">솔루션 6</h3>
-              <p class="solution-description-new">산업별 맞춤형 LED 드라이버 솔루션</p>
-            </div>
-          </div>
-
-          <div class="solution-card-new">
-            <div class="solution-image-placeholder">
-              <svg class="solution-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-              </svg>
-            </div>
-            <div class="solution-content-new">
-              <h3 class="solution-title-new">솔루션 7</h3>
-              <p class="solution-description-new">산업별 맞춤형 LED 드라이버 솔루션</p>
-            </div>
-          </div>
-
-          <div class="solution-card-new">
-            <div class="solution-image-placeholder">
-              <svg class="solution-placeholder-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
-              </svg>
-            </div>
-            <div class="solution-content-new">
-              <h3 class="solution-title-new">솔루션 8</h3>
-              <p class="solution-description-new">산업별 맞춤형 LED 드라이버 솔루션</p>
-            </div>
-          </div>
+    <!-- Variant B: Image Left, Text Right (Rental & Event) -->
+    <section class="solution-section section-animate" data-variant="image-left">
+      <div class="solution-section__container">
+        <div class="solution-section__image">
+          <img src="/src/resources/solutions/rental-event.jpg" alt="LED display at concert and event" loading="lazy">
+        </div>
+        <div class="solution-section__content">
+          <span class="solution-section__label">Rental & Event</span>
+          <h2 class="solution-section__headline">이벤트와 공연을 위한 유연한 LED 디스플레이 솔루션</h2>
+          <p class="solution-section__description">
+            콘서트, 전시회, 기업 행사를 위한 모듈형 LED 디스플레이 솔루션입니다.
+            빠른 설치와 해체, 뛰어난 내구성으로 다양한 환경에서 최상의 퍼포먼스를 제공합니다.
+          </p>
+          <a href="#contact" class="solution-section__cta">자세히 보기</a>
         </div>
       </div>
     </section>
