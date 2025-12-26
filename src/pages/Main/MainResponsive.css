@@ -224,6 +224,72 @@
   .store-map {
     min-height: 350px;
   }
+
+  /* ===============================================
+     CAROUSEL SECTION - TABLET
+     =============================================== */
+  .carousel-section {
+    padding: 4rem 1rem;
+  }
+
+  .carousel-header {
+    margin-bottom: 3rem;
+  }
+
+  .carousel-title {
+    font-size: 2rem;
+  }
+
+  .carousel-subtitle {
+    font-size: 1rem;
+  }
+
+  .carousel-swiper {
+    padding: 3rem 0 4rem;
+  }
+
+  /* 슬라이드 콘텐츠 - 태블릿용 크기 조정 */
+  .carousel-slide-content {
+    max-width: 320px;
+  }
+
+  /* 이미지 높이 조정 */
+  .carousel-image {
+    height: 260px;
+  }
+
+  /* 슬라이드 정보 */
+  .carousel-slide-info {
+    padding: 1.5rem;
+  }
+
+  .carousel-slide-title {
+    font-size: 1.125rem;
+  }
+
+  .carousel-slide-description {
+    font-size: 0.875rem;
+  }
+
+  /* 네비게이션 버튼 - 태블릿 */
+  .carousel-button-prev,
+  .carousel-button-next {
+    width: 48px;
+    height: 48px;
+  }
+
+  .carousel-button-prev::after,
+  .carousel-button-next::after {
+    font-size: 1.25rem;
+  }
+
+  .carousel-button-prev {
+    left: 1rem;
+  }
+
+  .carousel-button-next {
+    right: 1rem;
+  }
 }
 
 /* ===============================================
@@ -243,7 +309,7 @@
   }
 
   .hero-background {
-    background-size: 20px 20px;
+    background-size: cover;
   }
 
   .hero-content {
@@ -437,6 +503,17 @@
     line-height: 1.4;
   }
 
+  /* Products More Button */
+  .products-more-btn-wrapper {
+    margin-top: 2rem;
+  }
+
+  .products-more-btn {
+    font-size: 16px;
+    padding: 0.6em 0.9em;
+    padding-left: 0.8em;
+  }
+
   /* Calculator Section */
   .calculator-section {
     padding: 3rem 1rem;
@@ -573,6 +650,86 @@
   /* Animation Adjustments */
   .section-animate {
     transform: translateY(20px);
+  }
+
+  /* ===============================================
+     CAROUSEL SECTION - MOBILE
+     =============================================== */
+  .carousel-section {
+    padding: 3rem 0.5rem;
+  }
+
+  .carousel-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .carousel-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .carousel-subtitle {
+    font-size: 0.9375rem;
+  }
+
+  .carousel-swiper {
+    padding: 2.5rem 0 3.5rem;
+  }
+
+  /* 슬라이드 콘텐츠 - 모바일은 1.2개 표시이므로 더 크게 */
+  .carousel-slide-content {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  /* 이미지 높이 - 모바일에 맞게 조정 */
+  .carousel-image {
+    height: 240px;
+  }
+
+  /* 슬라이드 정보 패딩 */
+  .carousel-slide-info {
+    padding: 1rem;
+  }
+
+  .carousel-slide-title {
+    font-size: 0.9375rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .carousel-slide-description {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+  }
+
+  /* 네비게이션 버튼 - 모바일 */
+  .carousel-button-prev,
+  .carousel-button-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-button-prev::after,
+  .carousel-button-next::after {
+    font-size: 1rem;
+  }
+
+  .carousel-button-prev {
+    left: 0.25rem;
+  }
+
+  .carousel-button-next {
+    right: 0.25rem;
+  }
+
+  /* 페이지네이션 - 모바일 */
+  .carousel-pagination .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+  }
+
+  .carousel-pagination .swiper-pagination-bullet-active {
+    width: 20px;
   }
 }
 
