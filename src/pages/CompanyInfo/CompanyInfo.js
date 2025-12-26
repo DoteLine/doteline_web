@@ -34,27 +34,33 @@ function initScrollAnimation() {
 function handleImageLoading() {
     const images = document.querySelectorAll('.company-image');
 
-    images.forEach(img => {
+    images.forEach((img, index) => {
         const wrapper = img.parentElement;
 
-        // 이미지가 아직 로드되지 않은 경우
-        if (!img.complete) {
-            // 로딩 상태 추가
-            wrapper.classList.add('loading');
+        // 모든 이미지에 대해 로딩 상태 추가 (캐시된 경우에도 표시)
+        wrapper.classList.add('loading');
 
-            // 로딩 스피너 표시
-            Loading.show(wrapper, {
-                size: 'medium',
-                color: '#3b82f6'
+        // 로딩 스피너 표시
+        Loading.show(wrapper, {
+            text: 'DoteLine'
+        });
+
+        // 이미지가 이미 로드된 경우 (캐시)
+        if (img.complete && img.naturalHeight !== 0) {
+            // 짧은 지연 후 로딩 제거 (애니메이션을 볼 수 있도록)
+            setTimeout(() => {
+                wrapper.classList.remove('loading');
+                wrapper.classList.add('loaded');
+                Loading.hide(wrapper);
+            }, 500 + index * 100); // 순차적으로 제거
+        } else {
+            // 이미지 로드 완료 시
+            img.addEventListener('load', function() {
+                wrapper.classList.remove('loading');
+                wrapper.classList.add('loaded');
+                Loading.hide(wrapper);
             });
         }
-
-        // 이미지 로드 완료 시
-        img.addEventListener('load', function() {
-            wrapper.classList.remove('loading');
-            wrapper.classList.add('loaded');
-            Loading.hide(wrapper);
-        });
 
         // 이미지 로드 에러 시
         img.addEventListener('error', function() {

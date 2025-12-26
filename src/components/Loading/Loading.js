@@ -8,30 +8,31 @@ class Loading {
      * 로딩 스피너 생성
      * @param {HTMLElement} targetElement - 로딩 스피너를 표시할 부모 요소
      * @param {Object} options - 옵션 설정
-     * @param {string} options.size - 스피너 크기 ('small', 'medium', 'large')
-     * @param {string} options.color - 스피너 색상
+     * @param {string} options.text - 로딩 텍스트 (기본값: 'Loading')
      * @returns {HTMLElement} 생성된 로딩 요소
      */
     static show(targetElement, options = {}) {
-        const {
-            size = 'medium',
-            color = '#3b82f6'
-        } = options;
-
         // 기존 로딩 스피너가 있으면 제거
         this.hide(targetElement);
 
         // 로딩 컨테이너 생성
         const loadingContainer = document.createElement('div');
-        loadingContainer.className = `loading-container loading-${size}`;
+        loadingContainer.className = 'loading-container';
         loadingContainer.setAttribute('data-loading', 'true');
 
-        // 로딩 스피너 생성
-        const spinner = document.createElement('div');
-        spinner.className = 'loading-spinner';
-        spinner.style.borderTopColor = color;
+        // 로딩 애니메이션 요소 생성
+        const loader = document.createElement('div');
+        loader.className = 'loader';
 
-        loadingContainer.appendChild(spinner);
+        // 9개의 square 생성
+        for (let i = 1; i <= 9; i++) {
+            const square = document.createElement('div');
+            square.className = 'square';
+            square.id = `sq${i}`;
+            loader.appendChild(square);
+        }
+
+        loadingContainer.appendChild(loader);
         targetElement.appendChild(loadingContainer);
 
         return loadingContainer;
@@ -51,13 +52,13 @@ class Loading {
     /**
      * 전체 페이지 로딩 오버레이 표시
      * @param {Object} options - 옵션 설정
+     * @param {string} options.text - 로딩 텍스트 (기본값: 'Loading')
+     * @param {string} options.backgroundColor - 배경색
      * @returns {HTMLElement} 생성된 오버레이 요소
      */
     static showOverlay(options = {}) {
         const {
-            size = 'large',
-            color = '#3b82f6',
-            backgroundColor = 'rgba(255, 255, 255, 0.9)'
+            backgroundColor = 'rgba(0, 0, 0, 0.8)'
         } = options;
 
         // 기존 오버레이가 있으면 제거
@@ -69,12 +70,19 @@ class Loading {
         overlay.setAttribute('data-loading-overlay', 'true');
         overlay.style.backgroundColor = backgroundColor;
 
-        // 로딩 스피너 생성
-        const spinner = document.createElement('div');
-        spinner.className = `loading-spinner loading-${size}`;
-        spinner.style.borderTopColor = color;
+        // 로딩 애니메이션 요소 생성
+        const loader = document.createElement('div');
+        loader.className = 'loader';
 
-        overlay.appendChild(spinner);
+        // 9개의 square 생성
+        for (let i = 1; i <= 9; i++) {
+            const square = document.createElement('div');
+            square.className = 'square';
+            square.id = `sq${i}`;
+            loader.appendChild(square);
+        }
+
+        overlay.appendChild(loader);
         document.body.appendChild(overlay);
 
         return overlay;
