@@ -1,0 +1,79 @@
+/* ========================================
+   Solutions Main Page Styles
+   ======================================== */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Main Container */
+.solutions-main {
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 80px;
+}
+
+/* Hero Section */
+.solutions-hero {
+    width: 100%;
+    padding: 80px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.solutions-hero__title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+}
+
+.solutions-hero__subtitle {
+    font-size: 1.25rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* Solutions Sections Container */
+.solutions-main .solution-section:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.solutions-main .solution-section:nth-child(even) {
+    background: radial-gradient(
+        ellipse at center,
+        #f8f9fa 0%,
+        #f8f9fa 30%,
+        #ffffff 70%
+    );
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .solutions-hero__title {
+        font-size: 2.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .solutions-main {
+        padding-top: 60px;
+    }
+
+    .solutions-hero {
+        padding: 60px 20px;
+    }
+
+    .solutions-hero__title {
+        font-size: 2rem;
+    }
+
+    .solutions-hero__subtitle {
+        font-size: 1rem;
+    }
+}

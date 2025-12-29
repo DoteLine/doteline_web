@@ -29,6 +29,13 @@ router.get('/info', (req, res) => {
     res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'CompanyInfo', 'CompanyInfo.html'));
 });
 
+/**
+ * 솔루션 소개 페이지 (/solution)
+ */
+router.get('/solution', (req, res) => {
+    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Solutions', 'SolutionsMain.html'));
+});
+
 // ============================================
 // API 라우트 (필요시 추가)
 // ============================================
