@@ -1,0 +1,157 @@
+/* ===============================================
+   MAIN PAGE - BASE STYLES
+   Desktop-First Approach (1200px and above)
+   All responsive overrides in MainResponsive.css
+   =============================================== */
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  color: #0f172a;
+  background-color: #f8fafc;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
+
+/* Container */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ===============================================
+   BANNER SECTION
+   =============================================== */
+.banner-section {
+  position: relative;
+  margin-top: 80px;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f1f5f9 0%, #dbeafe 50%, #f1f5f9 100%);
+}
+
+.banner-background {
+  position: absolute;
+  inset: 0;
+  background-image: url('/resources/productpage/main-banner.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+
+/* ===============================================
+   PRODUCTS SECTION
+   =============================================== */
+.products-section {
+  padding: 6rem 2rem;
+  background-color: #f8fafc;
+}
+
+.product-image {
+  position: relative;
+  height: 18rem;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ===============================================
+   PRODUCTS SECTION NEW (4-Column Grid)
+   =============================================== */
+.products-section-new {
+  padding: 6rem 2rem;
+  background: #ffffff;
+  background: -webkit-linear-gradient(to bottom, #ffffff, #f9fafc);
+  background: linear-gradient(to bottom, #ffffff, #f9fafc);
+}
+
+.product-grid-new {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.product-card-new {
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.product-card-new:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+.product-image-placeholder {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-placeholder-icon {
+  width: 4rem;
+  height: 4rem;
+  color: #64748b;
+}
+
+.product-content-new {
+  padding: 1.5rem;
+}
+
+.product-title-new {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.product-description-new {
+  font-size: 0.875rem;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .products-grid-new {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    
+    .btn-group {
+        gap: 8px;
+        padding: 20px 15px;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}

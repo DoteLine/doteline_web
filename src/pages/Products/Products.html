@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 섹션 별 여백 추가 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 | DOTELINE</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/src/components/Header/Header.css">
+    <link rel="stylesheet" href="/src/components/Footer/Footer.css">
+    <link rel="stylesheet" href="/src/components/Loading/Loading.css">
+    <link rel="stylesheet" href="/src/pages/Products/Products.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header Component -->
+        <div id="header-container"></div>
+
+        <!-- Product Banner Section -->
+        <section class="banner-section">
+            <div class="banner-background"></div>
+        </section>
+
+        <!-- Product Menu Button Group -->
+        <div class="btn-group">
+            <a href="#" class="btn btn-primary active" aria-current="page">전체</a>
+            <a href="#" class="btn btn-primary">임대</a>
+            <a href="#" class="btn btn-primary">야외</a>
+            <a href="#" class="btn btn-primary">실내</a>
+            <a href="#" class="btn btn-primary">COB LED</a>
+        </div>
+
+        <!-- Product Menu List -->
+        <section id="products" class="products-section-new section-animate">
+        <div class="container">
+            <div class="product-grid-new">
+                
+            </div>
+            
+        </div>
+        </section>
+
+
+
+        <!-- Footer Component -->
+        <div id="footer-container"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/src/components/Loading/Loading.js"></script>
+    <script src="/src/utils/loadComponent.js"></script>
+    <script src="/src/components/Header/Header.js"></script>
+    <script src="/src/pages/Products/Products.js"></script>
+</body>
+</html>
