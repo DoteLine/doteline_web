@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- 섹션 별 여백 추가 -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>제품 상세| DOTELINE</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/src/components/Header/Header.css">
+    <link rel="stylesheet" href="/src/components/Footer/Footer.css">
+    <link rel="stylesheet" href="/src/components/Loading/Loading.css">
+    <link rel="stylesheet" href="/src/pages/Products/ProductDetail.css">
+</head>
+<body>
+    <div class="page-wrapper">
+        <!-- Header Component -->
+        <div id="header-container"></div>
+
+        <!-- Product Detail Section -->
+        <section class="product-detail-section">
+            <div class="container">
+                <!-- Product Title Information Section-->
+                <div class="product-detail-image-section">
+                    <!-- Product Image Slide / Name -->
+                    <div class="product-detail-image-section">
+                        <div class="main-image-slider">
+                            <div class="slider-container">
+                                <img id="main-image" src="" alt="제품 이미지" />
+                                <!-- Slide Indicator -->
+                                <div class="slider-indicators" id="slider-indicators"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <h1 id="detail-name" class="product-detail-title">제품명</h1>
+                    
+                    <p id="detail-category" class="product-detail-category"></p>
+                    
+                    <div id="detail-description" class="product-detail-description"></div>
+
+                    <div id="detail-tags" class="product-detail-tags"></div>
+
+                    <div class="product-options-section">
+                        <h3>TAG:</h3>
+                        <div id="detail-options" class="product-options"></div>
+                    </div>
+                </div>
+
+                <!-- Product Detail Section -->
+                 <div class="product-detail-image-section">
+                    <h2 class="section-title">제품 상세 정보</h2>
+                    <div id="detail-images-container" class="detail-images-container">
+                        <!-- 상세 이미지 추가되는 영역 -->
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+
+        <!-- Footer Component -->
+        <div id="footer-container"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/src/data/ProductData.js"></script>
+    <script src="/src/components/Loading/Loading.js"></script>
+    <script src="/src/utils/loadComponent.js"></script>
+    <script src="/src/components/Header/Header.js"></script>
+    <script src="/src/pages/Products/ProductDetail.js"></script>
+</body>
+</html>
