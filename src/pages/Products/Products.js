@@ -1,56 +1,32 @@
-console.log('product.js on');
 
-// 제품 데이터 관리
-// id, category, image 서술
-const productsData = {
-    rental : [
-        {id : 1, name: 'rental-indoor-500x500mm', category:'rental', image: '/resources/productpage/rental-indoor-500x500mm.png'},
-    ],
-    outdoor : [
-        {id : 2, name: 'stadium-screen', category:'outdoor', image: '/resources/productpage/stadium-screen.png'},
-    ],
-    indoor : [
-        {id : 3, name: 'gob-waterproof', category:'indoor', image: '/resources/productpage/gob-waterproof.png'},
-    ],
-    cob : [
-        {id : 4, name: 'cob-p07', category:'cob', image: '/resources/productpage/cob-p07.png'},
-    ],
 
-}
-
-// 전체 제품 배열 생성
-const getAllProducts = () =>{
-    return [
-        ...productsData.rental,
-        ...productsData.outdoor,
-        ...productsData.indoor,
-        ...productsData.cob,
-    ];
-};
-
-// 카테고리별 제품 가져오기
-const getProductsByCategory = (category) => {
-    if(category === 'all') {
-        return getAllProducts();
-    }
-
-    return productsData[category] || [];
-};
 
 // 제품 카드 HTML 생성
 const createProductCard = (product) => {
+    console.log('check product', product)
     return `
-        <div class="product-card-new" data-category="${product.category}"> 
+        <div class="product-card-new" data-category="${product.category} data-product-id="${product.id}" onclick="goToProductDetail(${product.id})"> 
             <div class="product-image-placeholder">
-                <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}" />
+                <div class="product-image-placeholder">
+                    <div class="product-image">
+                        <img src="${product.images[0]}" alt="${product.name}" />
+                    </div>
                 </div>
             </div>
             <div class="product-content-new">
                 <h3 class="product-title-new">${product.name}</h3>
             </div>
+            <div class="product-content-new">
+                <h4 class="product-title-new">${product.specs.options}</h3>
+            </div>
         </div>
     `;
+};
+
+
+// 제품 상세 페이지로 이동
+window.goToProductDetail = function(productId) {
+    window.location.href = `/product-detail.html?id=${productId}`;
 };
 
 
@@ -117,12 +93,3 @@ document.addEventListener('DOMContentLoaded', () => {
     // 카테고리 필터 이벤트 설정
     initCategoryFilter();
 })
-
-// 외부에서 사용 가능하도록 export
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        productsData,
-        renderProducts,
-        getProductsByCategory
-    };
-}
