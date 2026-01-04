@@ -131,78 +131,8 @@
       </div>
     </section>
 
-    <!--TODO이벤트 추가 좌우 슬라이드-->
     <!-- Product Solutions Section -->
-    <!-- Variant A: Text Left, Image Right (Outdoor Billboard) -->
-    <section id="solutions" class="solution-section section-animate" data-variant="text-left">
-      <div class="solution-section__container">
-        <div class="solution-section__content">
-          <span class="solution-section__label">Outdoor Billboard</span>
-          <h2 class="solution-section__headline">대규모 옥외 광고를 위한 프리미엄 LED 솔루션</h2>
-          <p class="solution-section__description">
-            도심 속 랜드마크가 되는 대형 LED 디스플레이를 위한 최적화된 드라이버 칩 솔루션입니다.
-            높은 밝기와 뛰어난 안정성으로 24시간 운영 환경에서도 완벽한 화질을 보장합니다.
-          </p>
-          <a href="#contact" class="solution-section__cta">자세히 보기</a>
-        </div>
-        <div class="solution-section__image">
-          <img src="/src/resources/solutions/outdoor-billboard.jpg" alt="Outdoor LED Billboard in urban environment" loading="lazy">
-        </div>
-      </div>
-    </section>
-
-    <!-- Variant B: Image Left, Text Right (Rental & Event) -->
-    <section class="solution-section section-animate" data-variant="image-left">
-      <div class="solution-section__container">
-        <div class="solution-section__image">
-          <img src="/resources/mainpage/solution/sample.jpeg" alt="LED display at concert and event" loading="lazy">
-        </div>
-        <div class="solution-section__content">
-          <span class="solution-section__label">Rental & Event</span>
-          <h2 class="solution-section__headline">이벤트와 공연을 위한 유연한 LED 디스플레이 솔루션</h2>
-          <p class="solution-section__description">
-            콘서트, 전시회, 기업 행사를 위한 모듈형 LED 디스플레이 솔루션입니다.
-            빠른 설치와 해체, 뛰어난 내구성으로 다양한 환경에서 최상의 퍼포먼스를 제공합니다.
-          </p>
-          <a href="#contact" class="solution-section__cta">자세히 보기</a>
-        </div>
-      </div>
-    </section>
-      <!-- Variant A: Text Left, Image Right (Outdoor Billboard) -->
-      <section id="solutions" class="solution-section section-animate" data-variant="text-left">
-          <div class="solution-section__container">
-              <div class="solution-section__content">
-                  <span class="solution-section__label">Outdoor Billboard</span>
-                  <h2 class="solution-section__headline">대규모 옥외 광고를 위한 프리미엄 LED 솔루션</h2>
-                  <p class="solution-section__description">
-                      도심 속 랜드마크가 되는 대형 LED 디스플레이를 위한 최적화된 드라이버 칩 솔루션입니다.
-                      높은 밝기와 뛰어난 안정성으로 24시간 운영 환경에서도 완벽한 화질을 보장합니다.
-                  </p>
-                  <a href="#contact" class="solution-section__cta">자세히 보기</a>
-              </div>
-              <div class="solution-section__image">
-                  <img src="/src/resources/solutions/outdoor-billboard.jpg" alt="Outdoor LED Billboard in urban environment" loading="lazy">
-              </div>
-          </div>
-      </section>
-
-      <!-- Variant B: Image Left, Text Right (Rental & Event) -->
-      <section class="solution-section section-animate" data-variant="image-left">
-          <div class="solution-section__container">
-              <div class="solution-section__image">
-                  <img src="/src/resources/solutions/rental-event.jpg" alt="LED display at concert and event" loading="lazy">
-              </div>
-              <div class="solution-section__content">
-                  <span class="solution-section__label">Rental & Event</span>
-                  <h2 class="solution-section__headline">이벤트와 공연을 위한 유연한 LED 디스플레이 솔루션</h2>
-                  <p class="solution-section__description">
-                      콘서트, 전시회, 기업 행사를 위한 모듈형 LED 디스플레이 솔루션입니다.
-                      빠른 설치와 해체, 뛰어난 내구성으로 다양한 환경에서 최상의 퍼포먼스를 제공합니다.
-                  </p>
-                  <a href="#contact" class="solution-section__cta">자세히 보기</a>
-              </div>
-          </div>
-      </section>
+    <div id="solutions-container"></div>
 
     <!-- Carousel Component -->
     <section class="carousel-section">
@@ -320,8 +250,8 @@
       <div class="store-location-container">
         <!-- Header -->
         <div class="store-location-header">
-          <h2 class="store-location-title">매장을 방문해보세요</h2>
-          <p class="store-location-subtitle">도트라인의 모든 제품을 직접 경험할 수 있습니다</p>
+          <h2 class="store-location-title">매장 안내</h2>
+          <p class="store-location-subtitle">도트라인의 모든 제품 경험과 상담이 가능합니다.</p>
         </div>
 
         <!-- Map Container -->
@@ -408,6 +338,7 @@
   <script src="/src/utils/loadComponent.js"></script>
   <script src="/src/components/Header/Header.js"></script>
   <script src="/src/components/Carousel/Carousel.js"></script>
+  <script src="/src/data/SolutionData.js"></script>
   <script src="/src/pages/Main/Main.js"></script>
 </body>
 </html>
