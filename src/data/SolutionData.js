@@ -297,12 +297,12 @@ const solutionsData = {
 };
 
 // ID로 솔루션 찾기
-export function findSolutionById(id) {
+function findSolutionById(id) {
     return solutionsData[id] || null;
 }
 
 // 전체 솔루션 목록 가져오기 (메인 페이지용)
-export function getAllSolutions() {
+function getAllSolutions() {
     return Object.keys(solutionsData).map(id => ({
         id: parseInt(id),
         ...solutionsData[id]
@@ -310,11 +310,17 @@ export function getAllSolutions() {
 }
 
 // 전체 솔루션 ID 목록 가져오기
-export function getAllSolutionIds() {
+function getAllSolutionIds() {
     return Object.keys(solutionsData);
 }
 
 // 솔루션 존재 여부 확인
-export function solutionExists(id) {
+function solutionExists(id) {
     return solutionsData.hasOwnProperty(id);
 }
+
+// 전역으로 노출
+window.findSolutionById = findSolutionById;
+window.getAllSolutions = getAllSolutions;
+window.getAllSolutionIds = getAllSolutionIds;
+window.solutionExists = solutionExists;

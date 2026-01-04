@@ -832,4 +832,314 @@
   .solution-card-new:hover {
     transform: none;
   }
+
+  /* Solution cards - remove hover effects on touch */
+  .solution-card-stack__inner:hover {
+    box-shadow:
+      0 2px 8px rgba(0, 0, 0, 0.06),
+      0 8px 32px rgba(0, 0, 0, 0.08),
+      0 16px 48px rgba(0, 0, 0, 0.1);
+  }
+
+  .solution-card-stack__inner:hover .solution-card-stack__image img {
+    transform: none;
+  }
+
+  .solution-card-stack__cta {
+    min-height: 48px;
+  }
+}
+
+/* ===============================================
+   SOLUTIONS STACK - RESPONSIVE STYLES
+   =============================================== */
+
+/* TABLET (599px - 1199px) */
+@media (max-width: 1199px) {
+  /* 솔루션 섹션 헤더 */
+  .solutions-stack-wrapper::before {
+    font-size: 2.25rem;
+  }
+
+  .solutions-stack-wrapper::after {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  /* 컨테이너 패딩 조정 */
+  .solutions-stack-container {
+    padding: 0 1.5rem;
+  }
+
+  /* 카드 높이 조정 */
+  .solution-card-stack {
+    height: 90vh;
+  }
+
+  .solution-card-stack__inner {
+    height: 480px;
+    max-width: 100%;
+    grid-template-columns: 42% 58%;
+  }
+
+  /* Sticky top 위치 조정 */
+  .solution-card-stack[data-index="0"] .solution-card-stack__inner {
+    top: 80px;
+  }
+
+  .solution-card-stack[data-index="1"] .solution-card-stack__inner {
+    top: 100px;
+  }
+
+  .solution-card-stack[data-index="2"] .solution-card-stack__inner {
+    top: 120px;
+  }
+
+  .solution-card-stack[data-index="3"] .solution-card-stack__inner {
+    top: 140px;
+  }
+
+  /* 컨텐츠 패딩 */
+  .solution-card-stack__content {
+    padding: 2.5rem;
+    gap: 1.5rem;
+  }
+
+  /* 배경 숫자 크기 조정 */
+  .solution-card-stack__content::before {
+    font-size: 4rem;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  /* 제목 크기 */
+  .solution-card-stack__title {
+    font-size: 2rem;
+  }
+
+  /* 설명 크기 */
+  .solution-card-stack__description {
+    font-size: 1rem;
+  }
+
+  /* CTA 버튼 */
+  .solution-card-stack__cta {
+    padding: 1rem 2rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* MOBILE (<600px) */
+@media (max-width: 599px) {
+  /* 솔루션 섹션 헤더 */
+  .solutions-stack-wrapper {
+    padding: 2.5rem 0 1.5rem;
+  }
+
+  .solutions-stack-wrapper::before {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .solutions-stack-wrapper::after {
+    font-size: 0.875rem;
+    margin-bottom: 2rem;
+  }
+
+  /* 컨테이너 */
+  .solutions-stack-container {
+    padding: 0 1rem;
+  }
+
+  /* 카드 높이 - 모바일에서는 짧게 */
+  .solution-card-stack {
+    height: 80vh;
+  }
+
+  /* 카드 내부 - 세로 레이아웃으로 변경 */
+  .solution-card-stack__inner {
+    height: auto;
+    min-height: 520px;
+    max-height: 600px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 200px 1fr;
+    border-radius: 20px;
+  }
+
+  /* Sticky top 위치 - 모바일 */
+  .solution-card-stack[data-index="0"] .solution-card-stack__inner {
+    top: 60px;
+  }
+
+  .solution-card-stack[data-index="1"] .solution-card-stack__inner {
+    top: 75px;
+  }
+
+  .solution-card-stack[data-index="2"] .solution-card-stack__inner {
+    top: 90px;
+  }
+
+  .solution-card-stack[data-index="3"] .solution-card-stack__inner {
+    top: 105px;
+  }
+
+  /* 이미지 높이 */
+  .solution-card-stack__image {
+    height: 200px;
+  }
+
+  /* 컨텐츠 패딩 */
+  .solution-card-stack__content {
+    padding: 2rem 1.5rem;
+    gap: 1.25rem;
+  }
+
+  /* 배경 숫자 - 모바일 */
+  .solution-card-stack__content::before {
+    font-size: 3rem;
+    top: 1rem;
+    right: 1rem;
+  }
+
+  /* 라벨 */
+  .solution-card-stack__label {
+    padding: 0.5rem 1rem;
+    font-size: 0.6875rem;
+    border-radius: 16px;
+  }
+
+  /* 제목 */
+  .solution-card-stack__title {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  /* 설명 */
+  .solution-card-stack__description {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  /* CTA 버튼 */
+  .solution-card-stack__cta {
+    padding: 0.875rem 1.75rem;
+    font-size: 0.875rem;
+    border-radius: 12px;
+  }
+
+  /* 애니메이션 조정 - 모바일에서는 덜 극적으로 */
+  @keyframes solution-card-scale-down {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(calc(1 - (0.05 * var(--reverse-index))));
+      opacity: 0.8;
+    }
+  }
+
+  /* 폴백 스케일도 조정 */
+  @supports not (animation-timeline: scroll()) {
+    .solution-card-stack__inner {
+      transform: scale(calc(1 - (0.03 * var(--card-index, 0))));
+    }
+  }
+}
+
+/* EXTRA SMALL MOBILE (<400px) */
+@media (max-width: 399px) {
+  /* 헤더 */
+  .solutions-stack-wrapper::before {
+    font-size: 1.5rem;
+  }
+
+  .solutions-stack-wrapper::after {
+    font-size: 0.8125rem;
+  }
+
+  /* 카드 내부 */
+  .solution-card-stack__inner {
+    min-height: 480px;
+    max-height: 550px;
+    grid-template-rows: 180px 1fr;
+    border-radius: 16px;
+  }
+
+  /* 이미지 높이 */
+  .solution-card-stack__image {
+    height: 180px;
+  }
+
+  /* 컨텐츠 패딩 */
+  .solution-card-stack__content {
+    padding: 1.5rem 1.25rem;
+    gap: 1rem;
+  }
+
+  /* 배경 숫자 */
+  .solution-card-stack__content::before {
+    font-size: 2.5rem;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  /* 라벨 */
+  .solution-card-stack__label {
+    padding: 0.375rem 0.875rem;
+    font-size: 0.625rem;
+  }
+
+  /* 제목 */
+  .solution-card-stack__title {
+    font-size: 1.25rem;
+  }
+
+  /* 설명 */
+  .solution-card-stack__description {
+    font-size: 0.8125rem;
+  }
+
+  /* CTA 버튼 */
+  .solution-card-stack__cta {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8125rem;
+  }
+}
+
+/* LANDSCAPE MODE - MOBILE */
+@media (max-width: 959px) and (orientation: landscape) {
+  .solutions-stack-wrapper {
+    padding: 2rem 0 1rem;
+  }
+
+  .solution-card-stack {
+    height: 140vh;
+  }
+
+  .solution-card-stack__inner {
+    grid-template-columns: 45% 55%;
+    grid-template-rows: 1fr;
+    height: 350px;
+    min-height: 350px;
+    max-height: 350px;
+  }
+
+  .solution-card-stack__image {
+    height: 100%;
+  }
+
+  .solution-card-stack__content {
+    padding: 2rem;
+    gap: 1rem;
+  }
+
+  .solution-card-stack__title {
+    font-size: 1.375rem;
+  }
+
+  .solution-card-stack__description {
+    font-size: 0.8125rem;
+  }
 }

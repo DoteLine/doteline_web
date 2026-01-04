@@ -3,9 +3,6 @@
  * Handles dynamic content loading and pagination
  */
 
-// Import solution data
-import { findSolutionById } from '../../data/SolutionData.js';
-
 // ========================================
 // State Management
 // ========================================
@@ -298,7 +295,7 @@ function handleProductImagesLoading() {
 function initializePage() {
     const solutionId = getUrlParameter('id');
 
-    const solutionData = findSolutionById(solutionId);
+    const solutionData = window.findSolutionById(solutionId);
 
     if (!solutionData) {
         // Redirect to solutions main if invalid ID

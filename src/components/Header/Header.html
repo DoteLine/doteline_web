@@ -9,10 +9,20 @@
       <!-- Desktop Menu -->
       <ul class="header-menu desktop-menu">
         <li><a href="/info" class="menu-link">회사 소개</a></li>
-          <!-- 드롭다운 설정 필요 -->
-          <li><a href="/product" class="menu-link">제품</a></li>
-          <!-- 드롭다운 설정 필요 -->
-        <li><a href="/solution" class="menu-link">솔루션</a></li>
+        <li><a href="/product" class="menu-link">제품</a></li>
+
+        <!-- Solutions Dropdown -->
+        <li class="menu-item-dropdown">
+          <a href="/solution" class="menu-link dropdown-trigger">
+            솔루션
+            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu" id="solutionsDropdown">
+            <!-- Solutions will be populated dynamically by JS -->
+          </div>
+        </li>
       </ul>
 
       <!-- Mobile Menu Button -->
@@ -33,8 +43,20 @@
     <div class="mobile-menu" id="mobileMenu">
       <ul class="mobile-menu-list">
         <li><a href="/info" class="menu-link">회사 소개</a></li>
-        <li><a href="#products" class="menu-link">제품</a></li>
-        <li><a href="#colors" class="menu-link">솔루션</a></li>
+        <li><a href="/product" class="menu-link">제품</a></li>
+
+        <!-- Mobile Solutions Dropdown -->
+        <li class="mobile-dropdown">
+          <button class="mobile-dropdown-trigger" id="mobileSolutionsTrigger">
+            솔루션
+            <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <ul class="mobile-dropdown-menu" id="mobileSolutionsDropdown">
+            <!-- Solutions will be populated dynamically by JS -->
+          </ul>
+        </li>
       </ul>
     </div>
   </nav>

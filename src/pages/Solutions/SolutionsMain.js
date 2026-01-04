@@ -3,9 +3,6 @@
  * Handles navigation to detail pages and scroll animations
  */
 
-// Import solution data
-import { getAllSolutions } from '../../data/SolutionData.js';
-
 // Navigate to detail page
 function goToDetail(solutionId) {
     // URL 파라미터로 solution ID 전달
@@ -65,7 +62,7 @@ function renderSolutions() {
     const solutionsMain = document.querySelector('.solutions-main');
     if (!solutionsMain) return;
 
-    const solutions = getAllSolutions();
+    const solutions = window.getAllSolutions();
 
     // 솔루션 섹션 HTML 생성
     const solutionSectionsHTML = solutions.map((solution, index) =>
