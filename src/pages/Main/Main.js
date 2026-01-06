@@ -82,49 +82,6 @@ function initScrollAnimation() {
   });
 }
 
-// 계산기 기능 초기화
-function initCalculator() {
-  const widthInput = document.getElementById('widthInput');
-  const heightInput = document.getElementById('heightInput');
-  const calculateBtn = document.getElementById('calculateBtn');
-  const calculatorResult = document.getElementById('calculatorResult');
-  const areaResult = document.getElementById('areaResult');
-  const paintResult = document.getElementById('paintResult');
-
-  if (!calculateBtn) return;
-
-  calculateBtn.addEventListener('click', () => {
-    const width = parseFloat(widthInput.value);
-    const height = parseFloat(heightInput.value);
-
-    // 입력값 유효성 검사
-    if (!width || !height || width <= 0 || height <= 0) {
-      alert('올바른 가로와 세로 값을 입력해주세요.');
-      return;
-    }
-
-    // 면적 및 필요한 페인트 양 계산
-    const area = width * height;
-    const paintNeeded = (area / 10) * 2; // 10㎡당 페인트 2L 필요
-
-    // 결과 표시
-    areaResult.textContent = area.toFixed(2);
-    paintResult.textContent = paintNeeded.toFixed(2);
-
-    // 결과 영역 표시
-    calculatorResult.classList.add('active');
-  });
-
-  // Enter 키로 계산 가능하도록 설정
-  [widthInput, heightInput].forEach(input => {
-    input.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter') {
-        calculateBtn.click();
-      }
-    });
-  });
-}
-
 // 앵커 링크 부드러운 스크롤 (메인 페이지)
 function initSmoothScroll() {
   const mainPageLinks = document.querySelectorAll(
@@ -152,12 +109,51 @@ function initSmoothScroll() {
   });
 }
 
-// mainPage.js 하단 수정
-document.addEventListener('DOMContentLoaded', () => {
-    // 이미 index.html의 PageLoader가 mainPage.html을 삽입한 상태이므로 
-    // DOMContentLoaded가 발생하지 않을 수 있습니다. 
-    // 따라서 함수로 묶어 즉시 실행하는 로직이 필요합니다.
-});
+// FAQ 초기화 함수
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    if (faqItems.length === 0) {
+        console.warn('FAQ items not found');
+        return;
+    }
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+
+        if (!question || !answer) {
+            console.warn('FAQ question or answer not found', item);
+            return;
+        }
+
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // 한 번에 하나만 열리도록 하려면 아래 주석 해제 (One-open policy)
+            /*
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    if (otherAnswer) {
+                        otherAnswer.style.maxHeight = null;
+                    }
+                }
+            });
+            */
+
+            if (isActive) {
+                item.classList.remove('active');
+                answer.style.maxHeight = null;
+            } else {
+                item.classList.add('active');
+                // scrollHeight를 이용해 실제 컨텐츠 높이만큼 확장
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+        });
+    });
+}
 
 // 기능 초기화 함수를 별도로 분리
 function setupMainPage() {
@@ -167,10 +163,15 @@ function setupMainPage() {
     // 렌더링 완료 후 애니메이션 및 기타 기능 초기화
     setTimeout(() => {
         initScrollAnimation();
-        initCalculator();
         initSmoothScroll();
+        initFAQ();
     }, 100);
 }
 
-// 즉시 실행
-setupMainPage();
+// DOM이 준비되면 실행
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMainPage);
+} else {
+    // DOM이 이미 준비된 경우 즉시 실행
+    setupMainPage();
+}
