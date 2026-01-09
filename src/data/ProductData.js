@@ -4,7 +4,7 @@ const productsData = {
     rental : [
         {
             id : 1, 
-            name: 'rental-indoor-500x500mm', 
+            name: 'rental indoor 500x500mm', 
             category:'rental',
             // 상세페이지 최상단 배너 이미지
             bannerImage: '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_1_head.jpg',
@@ -37,7 +37,7 @@ const productsData = {
         },
         {
             id : 11, 
-            name: 'rental-indoor-500x1000mm', 
+            name: 'rental indoor 500x1000mm', 
             category:'rental',
             bannerImage: '/resources/productpage/rental-indoor-500x1000mm/Rental Indoor 500x500mm_1_head.jpg',
             // 대표 이미지 배열 (5개)

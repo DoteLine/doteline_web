@@ -7,17 +7,13 @@ const createProductCard = (product) => {
     return `
         <div class="product-card-new" data-category="${product.category} data-product-id="${product.id}" onclick="goToProductDetail(${product.id})"> 
             <div class="product-image-placeholder">
-                <div class="product-image-placeholder">
-                    <div class="product-image">
-                        <img src="${product.images[0]}" alt="${product.name}" />
-                    </div>
+                <div class="product-image">
+                    <img src="${product.images[0]}" alt="${product.name}" />
                 </div>
             </div>
-            <div class="product-content-new">
-                <h3 class="product-title-new">${product.name}</h3>
-            </div>
-            <div class="product-content-new">
-                <h4 class="product-title-new">${product.specs.options}</h3>
+            <div class="product-title-new">
+                <h3>${product.name}</h3>
+                <p>${product.specs.options}</p>
             </div>
         </div>
     `;
@@ -47,7 +43,7 @@ const renderProducts = (category = 'all') => {
 
 // 버튼 활성화 상태 변경
 const updateActiveButton = (clickedButton) => {
-    const buttons = document.querySelectorAll('.btn-group .btn');
+    const buttons = document.querySelectorAll('.category-group .category-btn');
     buttons.forEach(btn => {
         btn.classList.remove('active');
         btn.removeAttribute('aria-current');
@@ -60,10 +56,10 @@ const updateActiveButton = (clickedButton) => {
 
 // 카테고리 필터링 이벤트 설정
 const initCategoryFilter = () => {
-    const btnGroup = document.querySelector('.btn-group');
-    if(!btnGroup) return;
+    const categoryGroup = document.querySelector('.category-group');
+    if(!categoryGroup) return;
 
-    const buttons = btnGroup.querySelectorAll('.btn');
+    const buttons = categoryGroup.querySelectorAll('.category-btn');
     const categoryMap = {
         '전체' : 'all',
         '임대' : 'rental',
@@ -75,7 +71,7 @@ const initCategoryFilter = () => {
     buttons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            
+
             const buttonText = button.textContent.trim();
             const category = categoryMap[buttonText];
 

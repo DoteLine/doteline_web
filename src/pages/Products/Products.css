@@ -14,7 +14,6 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.5;
-  color: #0f172a;
   background-color: #f8fafc;
 }
 
@@ -51,7 +50,52 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  padding-top: 100px;
 }
+
+.banner-title {
+  height: auto;
+  margin: 0px auto;
+}
+
+.banner-section .banner-background .banner-title h1 {
+  font-size: 48px;
+  color: #ffff;
+  text-align: center;
+}
+
+/* ===============================================
+   CATEGORY GROUP SECTION
+   =============================================== */
+.category-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  padding: 0 24px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: #000000;
+  background-color: transparent;
+  border: 1px solid #e2e8f0;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.category-btn.active,
+.category-btn:hover {
+  border-color: #64748b;
+  color: #64748b;
+}
+
 
 
 /* ===============================================
@@ -71,7 +115,6 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 
@@ -87,7 +130,7 @@ body {
 
 .product-grid-new {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
@@ -105,9 +148,12 @@ body {
 }
 
 .product-image-placeholder {
-  aspect-ratio: 1 / 1;
+  /* aspect-ratio: 1 / 1;
   background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
-  position: relative;
+  position: relative; */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 389 / 341;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -125,10 +171,34 @@ body {
 }
 
 .product-title-new {
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 0.5rem;
+  width: 100%;
+  height: auto;
+  margin-top: 30px;
+}
+
+.product-card-new .product-title-new h3{
+  font-size: 30px;
+  color: #000000;
+  text-align: center;
+  display: block;
+  margin-block-start: 1.33em;
+  margin-block-end: 1.33em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
+}
+
+.product-card-new .product-title-new p {
+  font-size: 16px;
+  color: #000000;
+  text-align: center;
+  margin-top: 14px;
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  unicode-bidi: isolate;
 }
 
 .product-description-new {
@@ -139,19 +209,36 @@ body {
 
 
 /* 반응형 */
+/* 중간 크기 (태블릿): 2열 */
+@media (max-width: 1024px) {
+    .product-grid-new {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 작은 크기 (모바일): 1열 */
 @media (max-width: 768px) {
-    .products-grid-new {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
+    .product-grid-new {
+        grid-template-columns: repeat(1, 1fr);
     }
-    
-    .btn-group {
-        gap: 8px;
-        padding: 20px 15px;
+}
+
+@media (max-width: 1400px) {
+    .banner-title {
+        width: 92%;
     }
-    
-    .btn {
-        padding: 8px 16px;
-        font-size: 14px;
+}
+
+
+@media (max-width: 768px) {
+    .banner-section .banner-background .banner-title h1 {
+      font-size: 5.8vw;
+    }
+    .category-btn {
+      font-size: 3.2vw;
+      padding: 0 1.8vw;
+      height: 8vw;
+      border-radius: 4vw;
+      margin-right: 1.2vw;
     }
 }
