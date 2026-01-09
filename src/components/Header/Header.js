@@ -31,8 +31,8 @@ function initHeader() {
     }
   });
 
-  // 메뉴 링크 클릭시 메뉴 닫기
-  const mobileMenuLinks = mobileMenu.querySelectorAll('.menu-link');
+  // 메뉴 링크 클릭시 메뉴 닫기 (솔루션 드롭다운 트리거 제외)
+  const mobileMenuLinks = mobileMenu.querySelectorAll('.menu-link:not(.mobile-dropdown-trigger)');
   mobileMenuLinks.forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('active');
@@ -122,19 +122,34 @@ function initMobileSolutionsDropdown() {
 
   mobileDropdownMenu.innerHTML = mobileDropdownHTML;
 
-  // 모바일 드롭다운 토글 기능
+  // 모바일 드롭다운 토글 기능 (텍스트 클릭 시 페이지 이동, 그 외 클릭 시 드롭다운)
   mobileDropdownTrigger.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    const target = e.target;
+    const clickedOnText = target.classList.contains('mobile-dropdown-text');
 
-    const isOpen = mobileDropdownMenu.classList.contains('active');
-
-    if (isOpen) {
-      mobileDropdownMenu.classList.remove('active');
-      mobileDropdownTrigger.classList.remove('active');
+    if (clickedOnText) {
+      // 텍스트 클릭: 페이지로 이동 (기본 링크 동작)
+      // 모바일 메뉴 닫기
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      if (mobileMenu && mobileMenuBtn) {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+      }
     } else {
-      mobileDropdownMenu.classList.add('active');
-      mobileDropdownTrigger.classList.add('active');
+      // 화살표나 공백 클릭: 드롭다운 토글
+      e.preventDefault();
+      e.stopPropagation();
+
+      const isOpen = mobileDropdownMenu.classList.contains('active');
+
+      if (isOpen) {
+        mobileDropdownMenu.classList.remove('active');
+        mobileDropdownTrigger.classList.remove('active');
+      } else {
+        mobileDropdownMenu.classList.add('active');
+        mobileDropdownTrigger.classList.add('active');
+      }
     }
   });
 

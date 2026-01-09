@@ -174,28 +174,6 @@
     font-size: 0.8125rem;
   }
 
-  /* Calculator Section */
-  .calculator-section {
-    padding: 4.5rem 1.5rem;
-  }
-
-  .calculator-card {
-    padding: 2.5rem;
-  }
-
-  .calculator-title {
-    font-size: 2rem;
-  }
-
-  .calculator-subtitle {
-    font-size: 0.9375rem;
-  }
-
-  .calculator-input,
-  .calculator-btn {
-    font-size: 0.9375rem;
-  }
-
   .result-item {
     font-size: 1rem;
   }
@@ -514,64 +492,6 @@
     padding-left: 0.8em;
   }
 
-  /* Calculator Section */
-  .calculator-section {
-    padding: 3rem 1rem;
-  }
-
-  .calculator-container {
-    max-width: 100%;
-  }
-
-  .calculator-card {
-    padding: 1.5rem;
-    border-radius: 1rem;
-  }
-
-  .calculator-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .calculator-subtitle {
-    font-size: 0.875rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .input-label {
-    font-size: 0.8125rem;
-    margin-bottom: 0.625rem;
-  }
-
-  .input-grid {
-    grid-template-columns: 1fr;
-    gap: 0.875rem;
-  }
-
-  .calculator-input {
-    padding: 0.75rem;
-    font-size: 0.9375rem;
-  }
-
-  .calculator-btn {
-    padding: 0.875rem;
-    font-size: 0.9375rem;
-  }
-
-  .calculator-result {
-    margin-top: 1.5rem;
-    padding: 1rem;
-  }
-
-  .result-item {
-    font-size: 0.9375rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .result-value {
-    font-size: 1.25rem;
-  }
-
   /* Stores Section */
   .stores-section {
     padding: 3rem 1rem;
@@ -770,10 +690,6 @@
     font-size: 0.6875rem;
   }
 
-  .calculator-title {
-    font-size: 1.375rem;
-  }
-
   .store-card-title {
     font-size: 1rem;
   }
@@ -808,14 +724,6 @@
   }
 
   .direction-btn {
-    min-height: 44px;
-  }
-
-  .calculator-btn {
-    min-height: 48px;
-  }
-
-  .calculator-input {
     min-height: 44px;
   }
 
@@ -1141,5 +1049,126 @@
 
   .solution-card-stack__description {
     font-size: 0.8125rem;
+  }
+}
+
+/* ===============================================
+   FAQ SECTION - RESPONSIVE STYLES
+   =============================================== */
+
+/* TABLET (599px - 1199px) */
+@media (max-width: 1199px) {
+  .faq-section {
+    padding: 4.5rem 1.5rem;
+  }
+
+  .faq-accordion {
+    margin: 2rem auto 0;
+    gap: 0.875rem;
+  }
+
+  .faq-question {
+    padding: 1.375rem 1.625rem;
+  }
+
+  .faq-q-text {
+    font-size: 1.0625rem;
+  }
+
+  .faq-answer-content {
+    padding: 0 1.625rem 1.375rem;
+    font-size: 0.9375rem;
+  }
+}
+
+/* MOBILE (<600px) */
+@media (max-width: 599px) {
+  .faq-section {
+    padding: 3rem 1rem;
+  }
+
+  .faq-accordion {
+    margin: 1.5rem auto 0;
+    gap: 0.75rem;
+  }
+
+  .faq-item {
+    border-radius: 0.625rem;
+  }
+
+  .faq-question {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .faq-q-text {
+    font-size: 1rem;
+    padding-right: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .faq-toggle-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+
+  .faq-answer-content {
+    padding: 0 1.25rem 1.25rem;
+    font-size: 0.875rem;
+    line-height: 1.7;
+  }
+}
+
+/* EXTRA SMALL MOBILE (<400px) */
+@media (max-width: 399px) {
+  .faq-section {
+    padding: 2.5rem 1rem;
+  }
+
+  .faq-accordion {
+    margin: 1.25rem auto 0;
+    gap: 0.625rem;
+  }
+
+  .faq-item {
+    border-radius: 0.5rem;
+  }
+
+  .faq-question {
+    padding: 1rem 1rem;
+  }
+
+  .faq-q-text {
+    font-size: 0.9375rem;
+    padding-right: 0.75rem;
+  }
+
+  .faq-toggle-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .faq-answer-content {
+    padding: 0 1rem 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.65;
+  }
+}
+
+/* TOUCH DEVICE - FAQ 터치 최적화 */
+@media (hover: none) and (pointer: coarse) {
+  .faq-question {
+    min-height: 44px;
+  }
+
+  /* 터치 디바이스에서 호버 효과 제거 */
+  .faq-item:hover {
+    border-color: #eaeaea;
+    box-shadow: none;
+  }
+
+  /* 활성화된 아이템에만 스타일 적용 */
+  .faq-item.active:hover {
+    border-color: #007aff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   }
 }
