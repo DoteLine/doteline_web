@@ -9,12 +9,47 @@ const path = require('path');
 // 로그 디렉토리 경로
 const LOG_DIR = path.join(__dirname, '..', '..', 'logs');
 
+// 마지막 로그 정리 시간 추적 (하루에 한 번만 실행)
+let lastCleanupDate = null;
+
 /**
  * logs 디렉토리가 없으면 생성
  */
 function ensureLogDirectory() {
     if (!fs.existsSync(LOG_DIR)) {
         fs.mkdirSync(LOG_DIR, { recursive: true });
+    }
+}
+
+/**
+ * 30일 이상 된 로그 파일 삭제 (운영 환경에서만 실행)
+ * 매일 자정에 자동으로 정리
+ */
+function cleanOldLogs() {
+    // 개발 환경에서는 실행하지 않음
+    if (process.env.NODE_ENV !== 'production') {
+        return;
+    }
+
+    try {
+        const now = Date.now();
+        const thirtyDaysAgo = now - (30 * 24 * 60 * 60 * 1000); // 30일 = 밀리초
+
+        // logs 디렉토리의 모든 파일 읽기
+        const files = fs.readdirSync(LOG_DIR);
+
+        files.forEach(file => {
+            const filePath = path.join(LOG_DIR, file);
+            const stats = fs.statSync(filePath);
+
+            // 파일이 30일 이상 되었으면 삭제
+            if (stats.isFile() && stats.mtimeMs < thirtyDaysAgo) {
+                fs.unlinkSync(filePath);
+                console.log(`[로그 정리] 오래된 로그 파일 삭제: ${file}`);
+            }
+        });
+    } catch (error) {
+        console.error('로그 파일 정리 실패:', error.message);
     }
 }
 
@@ -102,6 +137,13 @@ function logger(req, res, next) {
 
         // 파일에 저장
         writeLogToFile(logMessage);
+
+        // 하루에 한 번만 오래된 로그 파일 정리 (운영 환경에서만)
+        const today = now.toDateString();
+        if (lastCleanupDate !== today) {
+            lastCleanupDate = today;
+            cleanOldLogs();
+        }
     }
 
     // 정적 파일 및 기타 요청은 로그 출력 안 함

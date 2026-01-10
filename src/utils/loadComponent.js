@@ -30,3 +30,6 @@ async function loadHeaderAndFooter() {
 
 // 즉시 실행
 loadHeaderAndFooter();
+
+// 전역으로 노출 (다른 스크립트에서 사용할 수 있도록)
+window.loadComponent = loadComponent;

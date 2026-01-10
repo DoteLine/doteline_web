@@ -156,7 +156,10 @@ function initFAQ() {
 }
 
 // 기능 초기화 함수를 별도로 분리
-function setupMainPage() {
+async function setupMainPage() {
+    // StoreSection 컴포넌트 로드
+    await loadComponent('StoreSection', 'storeLocation-container');
+
     // 솔루션 섹션 먼저 렌더링
     renderSolutions();
 
