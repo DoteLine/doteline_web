@@ -5,64 +5,50 @@
 
 const express = require('express');
 const path = require('path');
+const fs = require('fs'); // 파일 시스템 모듈 추가
 const router = express.Router();
 
-// 프로젝트 루트 디렉토리 경로
 const ROOT_DIR = path.join(__dirname, '..', '..');
 
-// ============================================
-// 페이지 라우트
-// ============================================
+// 공통 키 주입 함수
+function sendInjectedHtml(res, filePath) {
+    try {
+        let html = fs.readFileSync(filePath, 'utf-8');
+        const key = process.env.KAKAO_MAP_API_KEY_PROD || process.env.KAKAO_MAP_API_KEY_DEV;
 
-/**
- * 메인 페이지 (/)
- * public/index.html을 제공하고, 이 파일이 Main.html을 동적으로 로드
- */
+        // {{KAKAO_MAP_API_KEY}}를 실제 키로 치환
+        html = html.replace(/\{\{KAKAO_MAP_API_KEY\}\}/g, key || '');
+
+        res.set('Content-Type', 'text/html');
+        return res.send(html);
+    } catch (err) {
+        console.error('HTML 주입 에러:', err);
+        return res.status(500).send('서버 오류');
+    }
+}
+
+// 메인 페이지
 router.get('/', (req, res) => {
-    res.sendFile(path.join(ROOT_DIR, 'public', 'index.html'));
+    // index.html에도 키가 필요할 수 있으니 동일하게 처리
+    sendInjectedHtml(res, path.join(ROOT_DIR, 'public', 'index.html'));
 });
 
-/**
- * 회사 소개 페이지 (/info)
- */
+// 🔥 여기가 핵심입니다! Main.html을 요청할 때 가로챕니다.
+router.get('/src/pages/Main/Main.html', (req, res) => {
+    sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Main', 'Main.html'));
+});
+
+// 나머지 페이지들
 router.get('/info', (req, res) => {
-    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'CompanyInfo', 'CompanyInfo.html'));
+    sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'CompanyInfo', 'CompanyInfo.html'));
 });
 
-
-/*
-* 제품 페이지 (/product)
-*/
 router.get('/product', (req, res) => {
-    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Products', 'Products.html'))
-})
-
-/**
- * 솔루션 소개 페이지 (/solution)
- */
-router.get('/solution', (req, res) => {
-    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Solutions', 'SolutionsMain.html'));
+    sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Products', 'Products.html'));
 });
 
-// ============================================
-// API 라우트 (필요시 추가)
-// ============================================
-
-// 예시: API 라우트를 추가하려면 아래와 같이 작성
-// router.get('/api/products', (req, res) => {
-//     res.json({ products: [] });
-// });
-
-// ============================================
-// 404 에러 핸들링
-// ============================================
-
-/**
- * 404 에러 처리 - 존재하지 않는 경로
- * 메인 페이지로 리다이렉트 (SPA 방식)
- */
-router.use((req, res) => {
-    res.status(404).sendFile(path.join(ROOT_DIR, 'public', 'index.html'));
+router.get('/solution', (req, res) => {
+    sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Solutions', 'SolutionsMain.html'));
 });
 
 module.exports = router;
