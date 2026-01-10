@@ -54,7 +54,26 @@ router.get('/info', (req, res) => {
 });
 
 router.get('/product', (req, res) => {
+<<<<<<< HEAD
     sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Products', 'Products.html'));
+=======
+    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Products', 'Products.html'))
+})
+
+/**
+ * 제품 상세 페이지(productDetail)
+ * Query String으로 제품 id전달 /ProductDetail?id=1
+ */
+router.get('/productDetail', (req, res) => {
+    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Products', 'ProductDetail.html'))
+})
+
+/**
+ * 솔루션 소개 페이지 (/solution)
+ */
+router.get('/solution', (req, res) => {
+    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Solutions', 'SolutionsMain.html'));
+>>>>>>> jimyung
 });
 
 router.get('/solution', (req, res) => {

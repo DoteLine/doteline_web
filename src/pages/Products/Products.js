@@ -5,15 +5,15 @@
 const createProductCard = (product) => {
     console.log('check product', product)
     return `
-        <div class="product-card-new" data-category="${product.category} data-product-id="${product.id}" onclick="goToProductDetail(${product.id})"> 
+        <div class="product-card-new" data-category="${product.category}" data-product-id="${product.id}" onclick="goToProductDetail(${product.id})"> 
             <div class="product-image-placeholder">
                 <div class="product-image">
-                    <img src="${product.images[0]}" alt="${product.name}" />
+                    <img src="${product.thumbnail}" alt="${product.name}" />
                 </div>
             </div>
             <div class="product-title-new">
                 <h3>${product.name}</h3>
-                <p>${product.specs.options}</p>
+                <p class="product-options">${product.specs.options.join(', ')}</p>
             </div>
         </div>
     `;
@@ -22,7 +22,7 @@ const createProductCard = (product) => {
 
 // 제품 상세 페이지로 이동
 window.goToProductDetail = function(productId) {
-    window.location.href = `/product-detail.html?id=${productId}`;
+    window.location.href = `/productDetail?id=${productId}`;
 };
 
 
