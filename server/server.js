@@ -79,6 +79,7 @@ app.listen(PORT, () => {
     console.log('  DOTELINE 웹서버가 시작되었습니다!');
     console.log('========================================');
     console.log(`  🌐 접속 포트: ${PORT}`);
+    console.log(`  🌐 접속 포트: ${PORT}`);
     console.log(`  📁 루트 디렉토리: ${ROOT_DIR}`);
     console.log(`  ⏰ 시작 시간: ${new Date().toLocaleString('ko-KR')}`);
     console.log('========================================\n');
