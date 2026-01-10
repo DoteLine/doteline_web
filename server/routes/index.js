@@ -38,6 +38,14 @@ router.get('/product', (req, res) => {
 })
 
 /**
+ * 제품 상세 페이지(productDetail)
+ * Query String으로 제품 id전달 /ProductDetail?id=1
+ */
+router.get('/productDetail', (req, res) => {
+    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Products', 'ProductDetail.html'))
+})
+
+/**
  * 솔루션 소개 페이지 (/solution)
  */
 router.get('/solution', (req, res) => {

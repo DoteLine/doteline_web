@@ -20,42 +20,57 @@
 
         <!-- Product Detail Section -->
         <section class="product-detail-section">
-            <div class="container">
-                <!-- Product Title Information Section-->
-                <div class="product-detail-image-section">
-                    <!-- Product Image Slide / Name -->
-                    <div class="product-detail-image-section">
-                        <div class="main-image-slider">
-                            <div class="slider-container">
-                                <img id="main-image" src="" alt="제품 이미지" />
-                                <!-- Slide Indicator -->
-                                <div class="slider-indicators" id="slider-indicators"></div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- 뒤로 가기 -->
+            <a href="/product" style="display: inline-block; margin: 20px; text-decoration: none; color: #333;">
+                ← 목록으로 돌아가기
+            </a>
 
-                    <!-- Product Info -->
-                    <h1 id="detail-name" class="product-detail-title">제품명</h1>
-                    
-                    <p id="detail-category" class="product-detail-category"></p>
-                    
-                    <div id="detail-description" class="product-detail-description"></div>
+            <hr>
 
-                    <div id="detail-tags" class="product-detail-tags"></div>
+            <!-- 제품 기본 정보 -->
+            <div id="product-info" style="padding: 20px;">
+                <h1 id="product-name">제품명</h1>
+                <p id="product-category" style="font-size: 16px; color: #666;">카테고리</p>
+                <p id="product-description" style="font-size: 18px; margin: 10px 0;">설명</p>
+            </div>
 
-                    <div class="product-options-section">
-                        <h3>TAG:</h3>
-                        <div id="detail-options" class="product-options"></div>
-                    </div>
-                </div>
+            <hr>
 
-                <!-- Product Detail Section -->
-                 <div class="product-detail-image-section">
-                    <h2 class="section-title">제품 상세 정보</h2>
-                    <div id="detail-images-container" class="detail-images-container">
-                        <!-- 상세 이미지 추가되는 영역 -->
-                    </div>
-                 </div>
+            <!-- 배너 이미지 -->
+            <div id="banner-section" style="padding: 20px; text-align: center;">
+                <img id="banner-image" src="" alt="배너" style="max-width: 100%; height: auto;">
+            </div>
+
+            <hr>
+
+            <!-- 대표 이미지들 -->
+            <div id="main-images-section" style="padding: 20px;">
+                <h2>대표 이미지</h2>
+                <div id="main-images-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
+            </div>
+
+            <hr>
+
+            <!-- 제품 태그 -->
+            <div id="tags-section" style="padding: 20px;">
+                <h2>태그</h2>
+                <div id="tags-container"></div>
+            </div>
+
+            <hr>
+
+            <!-- 제품 옵션 -->
+            <div id="options-section" style="padding: 20px;">
+                <h2>옵션</h2>
+                <div id="options-container"></div>
+            </div>
+
+            <hr>
+
+            <!-- 상세 이미지들 -->
+            <div id="detail-images-section" style="padding: 20px;">
+                <h2>제품 상세 정보</h2>
+                <div id="detail-images-container"></div>
             </div>
         </section>
 

@@ -1,34 +1,66 @@
+/**
+ * 제품 이미지 경로를 자동으로 생성하는 함수
+ * @param {string} productName - 제품명(예 : Rental Indoor 500x500mm)
+ * @param {number} imageCount - 대표이미지 갯수 (기본값 1)
+ * @param {number} detailImageCount - 상세 이미지 갯수 (기본값 7)
+ * @returns {object} - bannerImage, images, thumbnail, detailImages 경로
+ * 
+ */
+function generateProductImages(productName, imageCount = 1, detailImageCount = 7) {
+    // 제품명을 폴더명으로 변환 (공백은 언더바로, 소문자)
+    const folderName = productName.toLowerCase().replace(/\s+/g, '_');
+
+    // 제품명을 파일명으로 변환 (공백은 언더바, 대소문자 유지)
+    const fileName = productName.replace(/\s+/g, '_');
+
+    // 기본 경로
+    const basePath = `/resources/productpage/${folderName}`;
+
+    // 배너 이미지
+    const bannerImage = `${basePath}/${fileName}_1_head_copy.jpg`
+
+    // 대표이미지 배열 생성
+    const images = [];
+    for(let i = 0; i <imageCount; i++) {
+        images.push(`${basePath}/${fileName}_2_Product_Image${i > 0 ? i : ''}.jpg`);
+    }
+
+
+    // 썸네일
+    const thumbnail = images[0];
+
+    // 상세이미지 배열 생성
+    const detailImages = [
+        `${basePath}/${fileName}_3_Product_Key_Descriptions.jpg`,
+    ];
+
+    // 4-7번 이미지까지 상세이미지 중 Product_Advantages
+    const advantagesCount = detailImageCount -3;
+    for(let i = 0; i < advantagesCount; i++) {
+        detailImages.push(`${basePath}/${fileName}_${4+i}_Product_Advantages.jpg`);
+    }
+
+    // 상세이미지 중 8,9번
+    detailImages.push(`${basePath}/${fileName}_${4 + advantagesCount}_Product_Specifications.jpg`);
+    detailImages.push(`${basePath}/${fileName}_${5 + advantagesCount}_Product_usage_photos.jpg`);
+
+    return {
+        bannerImage,
+        images,
+        thumbnail,
+        detailImages
+    };
+}
+
+
 // 제품 데이터 관리
-// id, category, image 서술
 const productsData = {
     rental : [
         {
-            id : 1, 
-            name: 'rental indoor 500x500mm', 
-            category:'rental',
-            // 상세페이지 최상단 배너 이미지
-            bannerImage: '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_1_head.jpg',
-            // 대표 이미지 배열 (5개)
-            images: [
-                '/resources/productpage/rental-indoor-500x500mm/Rental-Indoor-500x500mm_2_Product-Image0.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_2_Product Image1.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_2_Product Image2.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_2_Product Image4.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_2_Product Image3.jpg',
-            ],
-            // 썸네일 이미지(목록 페이지용)
-            thumbnail: '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_2_Product Image0.jpg',
-            // 상세페이지용 이미지
-            detailImages: [
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_3_Product Key Descriptions.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_4_Product Advantages.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_5_Product Advantages.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_6_Product Advantages.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_7_Product Advantages.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_8_Product Specifications.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_9_Product usage photos.jpg',
-            ],
-            // 제품 스펙 - 옵션, 태그, 부가설명
+            id : 11, 
+            name: 'Rental Indoor 500x500mm', 
+            category: 'rental',
+            ...generateProductImages('Rental Indoor 500x500mm', 3, 7),
             specs: {
                 options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
                 tags: ['LED Screen', 'LED Display'],
@@ -36,103 +68,210 @@ const productsData = {
             }
         },
         {
-            id : 11, 
-            name: 'rental indoor 500x1000mm', 
-            category:'rental',
-            bannerImage: '/resources/productpage/rental-indoor-500x1000mm/Rental Indoor 500x500mm_1_head.jpg',
-            // 대표 이미지 배열 (5개)
-            images: [
-                '/resources/productpage/rental-indoor-500x1000mm/Rental-Indoor-500X1000mm_2_Product-Image.jpg',
-            ],
-            // 썸네일 이미지(목록 페이지용)
-            thumbnail: '/resources/productpage/rental-indoor-500x1000mm/Rental-Indoor-500X1000mm_2_Product-Image.jpg',
-            // 상세페이지용 이미지
-            detailImages: [
-                '/resources/productpage/rental-indoor-500x1000mm/Rental Indoor 500x500mm_3_Product Key Descriptions.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_4_Product Advantages.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_5_Product Advantages.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_6_Product Advantages.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_7_Product Advantages.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_8_Product Specifications.jpg',
-                '/resources/productpage/rental-indoor-500x500mm/Rental Indoor 500x500mm_9_Product usage photos.jpg',
-            ],
-            // 제품 스펙 - 옵션, 태그, 부가설명
+            id : 12, 
+            name: 'Rental Indoor 500x1000mm', 
+            category: 'rental',
+            ...generateProductImages('Rental Indoor 500x1000mm', 3, 7),
             specs: {
                 options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
         },
+        {
+            id : 13, 
+            name: 'Rental Outdoor 500x500mm', 
+            category: 'rental',
+            ...generateProductImages('Rental Outdoor 500x500mm', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 14, 
+            name: 'Rental Outdoor 500x1000mm', 
+            category: 'rental',
+            ...generateProductImages('Rental Outdoor 500x1000mm', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 15,
+            name: 'Rental Curved 500x1000mm',
+            category: 'rental',
+            ...generateProductImages('Rental Curved 500x1000mm', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 16,
+            name: 'Rental Curved 500x500mm',
+            category: 'rental',
+            ...generateProductImages('Rental Curved 500x500mm', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        }
     ],
     outdoor : [
         {
-            id : 2, 
-            name: 'stadium-screen',
+            id : 21,
+            name: 'Outdoor Die-casting',
             category: 'outdoor',
-            bannerImage: '/resources/productpage/stadium-screen-banner.png',
-            images: [
-                '/resources/productpage/stadium-screen-1.png',
-                '/resources/productpage/stadium-screen-2.png',
-                '/resources/productpage/stadium-screen-3.png',
-            ],
-            thumbnail: '/resources/productpage/stadium-screen-1.png',
-            detailImages: [
-                '/resources/productpage/stadium-screen-detail-1.png',
-                '/resources/productpage/stadium-screen-detail-2.png',
-                '/resources/productpage/stadium-screen-detail-3.png',
-                '/resources/productpage/stadium-screen-detail-4.png',
-            ],
+            ...generateProductImages('Outdoor Die-casting', 3, 7),
             specs: {
-                options: ['P8', 'P10'],
-                tags: ['Outdoor LED', 'Stadium Display'],
-                description: '고휘도 야외용',
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
             }
         },
+        {
+            id : 22,
+            name: 'Outdoor Simple',
+            category: 'outdoor',
+            ...generateProductImages('Outdoor Simple', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 23,
+            name: 'Outdoor Standard',
+            category: 'outdoor',
+            ...generateProductImages('Outdoor Standard', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 24,
+            name: 'Stadium Screen',
+            category: 'outdoor',
+            ...generateProductImages('Stadium Screen', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        }
     ],
     indoor : [
         {
-            id : 3, 
-            name: 'gob-waterproof',
+            id : 31,
+            name: 'GOB Waterproof',
             category: 'indoor',
-            bannerImage: '/resources/productpage/gob-waterproof-banner.png',
-            images: [
-                '/resources/productpage/gob-waterproof-1.png',
-                '/resources/productpage/gob-waterproof-2.png',
-            ],
-            thumbnail: '/resources/productpage/gob-waterproof-1.png',
-            detailImages: [
-                '/resources/productpage/gob-waterproof-detail-1.png',
-                '/resources/productpage/gob-waterproof-detail-2.png',
-            ],
+            ...generateProductImages('GOB Waterproof', 3, 7),
             specs: {
-                options: ['P2.5', 'P3'],
-                tags: ['GOB Technology', 'Waterproof'],
-                description: 'GOB 방수 기술',
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
             }
         },
+        {
+            id : 32,
+            name: '16-9 Golden Ratio',
+            category: 'indoor',
+            ...generateProductImages('16-9 Golden Ratio', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 33,
+            name: 'Indoor Die-casting',
+            category: 'indoor',
+            ...generateProductImages('Indoor Die-casting', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 34,
+            name: 'Indoor Aluminum',
+            category: 'indoor',
+            ...generateProductImages('Indoor Aluminum', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 35,
+            name: 'Indoor Flexible',
+            category: 'indoor',
+            ...generateProductImages('Indoor Flexible', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 36,
+            name: 'Indoor Standard',
+            category: 'indoor',
+            ...generateProductImages('Indoor Standard', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        }
+    
     ],
     cob : [
         {
-            id : 4, 
-            name: 'cob-p07',
+            id : 41,
+            name: 'COB_P0.7',
             category: 'cob',
-            bannerImage: '/resources/productpage/cob-p07-1-banner.png',
-            images: [
-                '/resources/productpage/cob-p07-1.png',
-                '/resources/productpage/cob-p07-2.png',
-                '/resources/productpage/cob-p07-3.png',
-                '/resources/productpage/cob-p07-4.png',
-            ],
-            thumbnail: '/resources/productpage/cob-p07-1.png',
-            detailImages: [
-                '/resources/productpage/cob-p07-detail-1.png',
-            ],
+            ...generateProductImages('COB_P0.7', 3, 7),
             specs: {
-                options: ['P0.7', 'P0.9', 'P1.25'],
-                tags: ['COB LED', 'Ultra HD'],
-                description: '초고해상도 COB',
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
             }
         },
+        {
+            id : 42,
+            name: 'COB_P0.9',
+            category: 'cob',
+            ...generateProductImages('COB_P0.9', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        },
+        {
+            id : 41,
+            name: 'COB_P1.2',
+            category: 'cob',
+            ...generateProductImages('COB_P1.2', 3, 7),
+            specs: {
+                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                tags: ['LED Screen', 'LED Display'],
+                description: '익스트림 HD',
+            }
+        }
     ],
 };
 

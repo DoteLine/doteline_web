@@ -1,190 +1,180 @@
-console.log('ProduceDetail.js on');
- 
-let curentSlideIndex = 0;
-let slideInterval = null;
-let productImages = [];
+console.log('ProductDetail.js 로드됨');
 
 // URL에서 제품 ID 가져오기
 function getProductIdFromUrl() {
     const params = new URLSearchParams(window.location.search);
-    return parseInt(params.get('id'));
+    const id = params.get('id');
+    console.log('URL에서 가져온 ID:', id);
+    return parseInt(id);
 }
 
-// 이미지 슬라이더 초기화
-function initImageSlider(images) {
-    productImages = images;
-    curentSlideIndex = 0;
-
-    // 메인 이미지 설정
-    const mainImage = document.getElementById('main-image');
-    mainImage.src = images[0];
-
-    // 인디케이터 생성
-    const indicatorContainer = document.getElementById('slider-indicators');
-    indicatorContainer.innerHTML = images.map((_, index) => 
-        `<span class="indicator ${index === 0? 'active' : ''}" onclick="goToSlide(${index})"></span>`).join('');
-
-    // 썸네일 이미지 생성
-    const thumbnailContainer = document.getElementById('thumbnail-images');
-    thumbnailContainer.innerHTML = images.map((img, index) =>
-        ` <img src="${img}"
-                class="thumbnail ${index === 0 ? 'active' : ''}
-                onclick="goToSlide(${index})"
-                alt="썸네일 ${index +1}">
-    `).join('');
-
-    // 자동 슬라이드 시작
-    startAutoSlide();
-}
-
-// 슬라이드 변경
-window.changeSlide = function(direction) {
-    stopAutoSlide();
-    curentSlideIndex += direction;
-
-    if(curentSlideIndex >= productImages.length) {
-        curentSlideIndex = 0;
-    } else if (curentSlideIndex < 0) {
-        curentSlideIndex = productImages.length - 1;
-    }
-
-    updateSlide();
-    startAutoSlide();
-}
-
-
-// 특정 슬라이드로 이동
-window.goToSlide = function(index) {
-    stopAutoSlide();
-    curentSlideIndex = index;
-    updateSlide();
-    startAutoSlide();
-}
-
-// 슬라이드 업데이트
-function updateSlide() {
-    const mainImage = document.getElementById('main-image');
-    mainImage.style.opacity = '0';
-
-    setTimeout(() => {
-        mainImage.src = productImages[curentSlideIndex];
-        mainImage.style.opacity = '1';
-    }, 200);
-
-    // 안디케이터 업데이트
-    document.querySelectorAll('.indicator').forEach((indicator, index) => {
-        indicator.classList.toggle('active', index === curentSlideIndex);
-    });
-
-    // 썸네일 업데이트
-    document.querySelectorAll('.thumbnail').forEach((thumb, index) => {
-        thumb.classList.toggle('active', index === curentSlideIndex);
-    });
-}
-
-// 자동 슬라이드 시작
-function startAutoSlide() {
-    slideInterval = setInterval(() => {
-        curentSlideIndex = (curentSlideIndex + 1) % productImages.length;
-        updateSlide();
-    }, 3000); // 3초마다 전환
-}
-
-// 자동 슬라이드 중지
-function stopAutoSlide() {
-    if(slideInterval) {
-        clearInterval(slideInterval);
-        slideInterval = null;
-    }
-}
-
-// 제품 태그 렌더링
-function renderTags(tags) {
-    const tagsContainer = document.getElementById('detail-tags');
-
-    if(!tags || tags.length === 0){
-        tagsContainer.style.display = 'none';
-        return;
-    }
-
-    tagsContainer.innerHTML = tags.map(tag => 
-        `<span class="tag">${tag}</span>`
-    ).join('');
-}
-
-// 제품 옵션 렌더링
-function renderOptions(options) {
-    const optionsContainer = document.getElementById('detail-options');
-    const optionsSection = document.querySelector('.product-options-section');
-
-    if (!options || options.length === 0) {
-        optionsSection.style.display = 'none';
-        return;
-    }
-
-    optionsContainer.innerHTML = options.map(option =>
-         `<span class="option">${option}</span>`
-    ).join('');
-}
-
-// 상세 이미지 렌더링
-function renderDetailImages(detailImages) {
-    const container = document.getElementById('detail-images-container');
-
-    if(!detailImages || detailImages.length === 0) {
-        container.innerHTML = '<p class="no-detail-images">상세 이미지가 없습니다.</p>';
-        return;
-    }
-
-    container.innerHTML = detailImages.map((img, index) =>
-        `<div class="detail-image-wrapper">
-            <img src="${img}"
-                alt="상세 이미지 ${index + 1}"
-                class= "detail-image"
-                loading="lazy"
-            />
-        </div>`
-    ).join('');
-}
-
-// 제품 상세 정보 렌더링
+// 제품 데이터 렌더링
 function renderProductDetail() {
+    console.log('renderProductDetail 시작');
+    
+    // 1. 제품 ID 가져오기
     const productId = getProductIdFromUrl();
+    console.log('제품 ID:', productId);
+
+    // 2. 제품 찾기
     const product = findProductById(productId);
+    console.log('찾은 제품:', product);
 
-    if(!product) {
-        document.querySelector('.product-detail-container').innerHTML = 
-            `<p class="error-message">제품을 찾을 수 없습니다.</p>`;
+    // 3. 제품이 없으면 에러 메시지
+    if (!product) {
+        const section = document.querySelector('.product-detail-section');
+        section.innerHTML = `
+            <div style="padding: 40px; text-align: center;">
+                <h1>제품을 찾을 수 없습니다.</h1>
+                <p>요청하신 제품(ID: ${productId})이 존재하지 않습니다.</p>
+                <a href="/product" style="display: inline-block; margin-top: 20px; padding: 10px 20px; background: #333; color: white; text-decoration: none;">목록으로 돌아가기</a>
+            </div>
+        `;
         return;
-    };
-
-    // 제품 기본 정보 표시
-    document.getElementById('detail-name').textContent = product.name;
-    document.getElementById('detail-category').textContent = getCategoryName(product.category);
-
-    // 제품 설명 표시
-    if(product.specs && product.specs.description) {
-        document.getElementById('detail-description').innerHTML = 
-            `<p>${product.specs.description}</p>`
     }
 
-    // 제품 태그 렌더링
-    if(product. images && product.images.length > 0) {
-        initImageSlider(product.images);
+    // 4. 기본 정보 표시
+    document.getElementById('product-name').textContent = product.name;
+    document.getElementById('product-category').textContent = 
+        `카테고리: ${getCategoryName(product.category)}`;
+    
+    if (product.specs && product.specs.description) {
+        document.getElementById('product-description').textContent = 
+            product.specs.description;
+    } else {
+        document.getElementById('product-description').style.display = 'none';
     }
 
+    // 5. 배너 이미지 표시
+    const bannerImage = document.getElementById('banner-image');
+    if (product.bannerImage) {
+        bannerImage.src = product.bannerImage;
+        bannerImage.onerror = function() {
+            console.error('배너 이미지 로드 실패:', product.bannerImage);
+            document.getElementById('banner-section').innerHTML = 
+                '<p style="color: red;">배너 이미지를 불러올 수 없습니다.</p>';
+        };
+    } else {
+        document.getElementById('banner-section').style.display = 'none';
+    }
 
-    // 상세 이미지 렌더링
-    renderDetailImages(product.detailImages);
+    // 6. 대표 이미지들 표시
+    const mainImagesContainer = document.getElementById('main-images-container');
+    if (product.images && product.images.length > 0) {
+        mainImagesContainer.innerHTML = ''; // 초기화
+        product.images.forEach((img, index) => {
+            const imgElement = document.createElement('img');
+            imgElement.src = img;
+            imgElement.alt = `대표 이미지 ${index + 1}`;
+            imgElement.style.maxWidth = '300px';
+            imgElement.style.height = 'auto';
+            imgElement.style.border = '1px solid #ddd';
+            imgElement.style.borderRadius = '8px';
+            
+            imgElement.onerror = function() {
+                console.error(`대표 이미지 ${index + 1} 로드 실패:`, img);
+                this.style.display = 'none';
+            };
+            
+            mainImagesContainer.appendChild(imgElement);
+        });
+    } else {
+        document.getElementById('main-images-section').style.display = 'none';
+    }
 
-    // 페이지 타이틀 변경
+    // 7. 태그 표시
+    const tagsContainer = document.getElementById('tags-container');
+    if (product.specs && product.specs.tags && product.specs.tags.length > 0) {
+        tagsContainer.innerHTML = ''; // 초기화
+        product.specs.tags.forEach(tag => {
+            const tagElement = document.createElement('span');
+            tagElement.textContent = tag;
+            tagElement.style.display = 'inline-block';
+            tagElement.style.padding = '8px 16px';
+            tagElement.style.margin = '5px';
+            tagElement.style.border = '1px solid #999';
+            tagElement.style.borderRadius = '20px';
+            tagElement.style.fontSize = '14px';
+            tagElement.style.backgroundColor = '#f5f5f5';
+            tagsContainer.appendChild(tagElement);
+        });
+    } else {
+        document.getElementById('tags-section').style.display = 'none';
+    }
+
+    // 8. 옵션 표시
+    const optionsContainer = document.getElementById('options-container');
+    if (product.specs && product.specs.options && product.specs.options.length > 0) {
+        optionsContainer.innerHTML = ''; // 초기화
+        product.specs.options.forEach(option => {
+            const optionElement = document.createElement('button');
+            optionElement.textContent = option;
+            optionElement.style.padding = '10px 20px';
+            optionElement.style.margin = '5px';
+            optionElement.style.border = '2px solid #333';
+            optionElement.style.borderRadius = '5px';
+            optionElement.style.cursor = 'pointer';
+            optionElement.style.backgroundColor = 'white';
+            optionElement.style.fontSize = '14px';
+            
+            // 호버 효과
+            optionElement.onmouseover = function() {
+                this.style.backgroundColor = '#333';
+                this.style.color = 'white';
+            };
+            optionElement.onmouseout = function() {
+                this.style.backgroundColor = 'white';
+                this.style.color = 'black';
+            };
+            
+            optionsContainer.appendChild(optionElement);
+        });
+    } else {
+        document.getElementById('options-section').style.display = 'none';
+    }
+
+    // 9. 상세 이미지들 표시
+    const detailImagesContainer = document.getElementById('detail-images-container');
+    if (product.detailImages && product.detailImages.length > 0) {
+        detailImagesContainer.innerHTML = ''; // 초기화
+        product.detailImages.forEach((img, index) => {
+            const wrapper = document.createElement('div');
+            wrapper.style.marginBottom = '20px';
+            
+            const imgElement = document.createElement('img');
+            imgElement.src = img;
+            imgElement.alt = `상세 이미지 ${index + 1}`;
+            imgElement.style.maxWidth = '100%';
+            imgElement.style.height = 'auto';
+            imgElement.style.border = '1px solid #eee';
+            
+            imgElement.onerror = function() {
+                console.error(`상세 이미지 ${index + 1} 로드 실패:`, img);
+                wrapper.innerHTML = `<p style="color: red;">이미지 ${index + 1}을 불러올 수 없습니다.</p>`;
+            };
+            
+            wrapper.appendChild(imgElement);
+            detailImagesContainer.appendChild(wrapper);
+        });
+    } else {
+        document.getElementById('detail-images-section').style.display = 'none';
+    }
+
+    // 10. 페이지 제목 변경
     document.title = `${product.name} | DOTELINE`;
+    
+    console.log('renderProductDetail 완료');
 }
 
 // 페이지 로드 시 실행
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded - ProductDetail 페이지 로드');
+    
+    // ProductData.js가 로드되었는지 확인
+    if (typeof findProductById === 'undefined') {
+        console.error('ProductData.js가 로드되지 않았습니다!');
+        return;
+    }
+    
     renderProductDetail();
-
-    // 페이지 벗어나면 자동 슬라이드 중지
-    window.addEventListener('beforeunload', stopAutoSlide);
-})
+});
