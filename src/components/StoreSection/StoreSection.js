@@ -65,8 +65,6 @@ function initKakaoMap() {
 
     // 마커에 인포윈도우 표시
     infowindow.open(map, marker);
-
-    console.log('카카오 지도가 성공적으로 로드되었습니다.');
   });
 }
 

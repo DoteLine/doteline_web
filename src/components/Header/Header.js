@@ -46,6 +46,9 @@ function initHeader() {
   // 모바일 솔루션 드롭다운 토글
   initMobileSolutionsDropdown();
 
+  // 문의하기 기능 초기화
+  initContactForm();
+
   console.log('Header initialized successfully');
   return true;
 }
@@ -170,6 +173,241 @@ function initMobileSolutionsDropdown() {
       }
     });
   });
+}
+
+/**
+ * 문의하기 폼 초기화
+ */
+function initContactForm() {
+  const contactBadgeBtn = document.getElementById('contactBadgeBtn');
+  const mobileContactBtn = document.getElementById('mobileContactBtn');
+  const contactDropdown = document.getElementById('contactDropdown');
+  const contactDropdownClose = document.getElementById('contactDropdownClose');
+  const contactModal = document.getElementById('contactModal');
+  const contactModalClose = document.getElementById('contactModalClose');
+  const contactModalOverlay = document.getElementById('contactModalOverlay');
+
+  const contactForm = document.getElementById('contactForm');
+  const contactFormMobile = document.getElementById('contactFormMobile');
+
+  const charCountElement = document.getElementById('charCount');
+  const charCountMobileElement = document.getElementById('charCountMobile');
+  const messageTextarea = document.getElementById('contactMessage');
+  const messageTextareaMobile = document.getElementById('contactMessageMobile');
+
+  if (!contactBadgeBtn && !mobileContactBtn) {
+    console.warn('Contact buttons not found');
+    return;
+  }
+
+  // 데스크톱 문의하기 버튼 클릭 (드롭다운 토글)
+  if (contactBadgeBtn) {
+    contactBadgeBtn.addEventListener('click', () => {
+      contactDropdown.classList.toggle('active');
+    });
+  }
+
+  // 모바일 메뉴 내 문의하기 버튼 클릭 (모달 열기)
+  if (mobileContactBtn) {
+    mobileContactBtn.addEventListener('click', () => {
+      // 모바일 메뉴 닫기
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      if (mobileMenu) mobileMenu.classList.remove('active');
+      if (mobileMenuBtn) mobileMenuBtn.classList.remove('active');
+
+      // 모달 열기
+      contactModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  // 드롭다운 닫기 버튼
+  if (contactDropdownClose) {
+    contactDropdownClose.addEventListener('click', () => {
+      contactDropdown.classList.remove('active');
+    });
+  }
+
+  // 모달 닫기 버튼
+  if (contactModalClose) {
+    contactModalClose.addEventListener('click', () => {
+      contactModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  }
+
+  // 모달 오버레이 클릭 시 닫기
+  if (contactModalOverlay) {
+    contactModalOverlay.addEventListener('click', () => {
+      contactModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  }
+
+  // 외부 클릭 시 드롭다운 닫기
+  document.addEventListener('click', (e) => {
+    if (!contactBadgeBtn.contains(e.target) && !contactDropdown.contains(e.target)) {
+      contactDropdown.classList.remove('active');
+    }
+  });
+
+  // 글자 수 카운터 (데스크톱)
+  if (messageTextarea && charCountElement) {
+    messageTextarea.addEventListener('input', () => {
+      charCountElement.textContent = messageTextarea.value.length;
+    });
+  }
+
+  // 글자 수 카운터 (모바일)
+  if (messageTextareaMobile && charCountMobileElement) {
+    messageTextareaMobile.addEventListener('input', () => {
+      charCountMobileElement.textContent = messageTextareaMobile.value.length;
+    });
+  }
+
+  // 폼 제출 (데스크톱)
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleContactFormSubmit(contactForm, false);
+    });
+  }
+
+  // 폼 제출 (모바일)
+  if (contactFormMobile) {
+    contactFormMobile.addEventListener('submit', (e) => {
+      e.preventDefault();
+      handleContactFormSubmit(contactFormMobile, true);
+    });
+  }
+}
+
+/**
+ * 문의하기 폼 제출 처리
+ * @param {HTMLFormElement} form - 제출할 폼
+ * @param {boolean} isMobile - 모바일 여부
+ */
+async function handleContactFormSubmit(form, isMobile) {
+  const submitBtn = form.querySelector('.form-submit-btn');
+  const messageDiv = form.querySelector('.form-message');
+
+  // 폼 데이터 가져오기
+  const formData = new FormData(form);
+  const name = formData.get('name').trim();
+  const phone = formData.get('phone').trim();
+  const message = formData.get('message').trim();
+
+  // 유효성 검사
+  if (!name || !phone || !message) {
+    showMessage(messageDiv, '모든 필드를 입력해주세요.', 'error');
+    return;
+  }
+
+  // 전화번호 형식 검사 (간단한 검증)
+  const phoneRegex = /^[0-9-+() ]+$/;
+  if (!phoneRegex.test(phone)) {
+    showMessage(messageDiv, '올바른 전화번호 형식을 입력해주세요.', 'error');
+    return;
+  }
+
+  // 로딩 상태
+  submitBtn.classList.add('loading');
+  submitBtn.disabled = true;
+
+  try {
+    // EmailJS로 이메일 전송
+    await sendEmailViaEmailJS(name, phone, message);
+
+    // 성공 메시지
+    showMessage(messageDiv, '문의가 성공적으로 전송되었습니다!', 'success');
+
+    // 폼 초기화
+    form.reset();
+    if (!isMobile) {
+      document.getElementById('charCount').textContent = '0';
+    } else {
+      document.getElementById('charCountMobile').textContent = '0';
+    }
+
+    // 2초 후 드롭다운/모달 닫기
+    setTimeout(() => {
+      if (!isMobile) {
+        document.getElementById('contactDropdown').classList.remove('active');
+      } else {
+        document.getElementById('contactModal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      messageDiv.classList.remove('success');
+      messageDiv.style.display = 'none';
+    }, 2000);
+
+  } catch (error) {
+    console.error('Error sending email:', error);
+    showMessage(messageDiv, '전송 중 오류가 발생했습니다. 다시 시도해주세요.', 'error');
+  } finally {
+    // 로딩 상태 해제
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+  }
+}
+
+/**
+ * EmailJS를 통해 이메일 전송
+ * @param {string} name - 이름
+ * @param {string} phone - 전화번호
+ * @param {string} message - 문의 내용
+ */
+async function sendEmailViaEmailJS(name, phone, message) {
+  // 환경변수에서 EmailJS 설정 로드
+  const SERVICE_ID = window.EMAILJS_CONFIG?.SERVICE_ID;
+  const TEMPLATE_ID = window.EMAILJS_CONFIG?.TEMPLATE_ID;
+  const PUBLIC_KEY = window.EMAILJS_CONFIG?.PUBLIC_KEY;
+
+  // 디버깅: 환경변수 확인
+  console.log('EmailJS 설정:', {
+    SERVICE_ID,
+    TEMPLATE_ID,
+    PUBLIC_KEY: PUBLIC_KEY ? '설정됨' : '미설정',
+    전체_CONFIG: window.EMAILJS_CONFIG
+  });
+
+  // EmailJS가 로드되지 않았을 경우
+  if (typeof emailjs === 'undefined') {
+    throw new Error('EmailJS가 로드되지 않았습니다.');
+  }
+
+  // 환경변수가 설정되지 않은 경우
+  if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+    console.error('환경변수 누락:', {
+      SERVICE_ID: SERVICE_ID || '❌ 누락',
+      TEMPLATE_ID: TEMPLATE_ID || '❌ 누락',
+      PUBLIC_KEY: PUBLIC_KEY ? '✅ 설정됨' : '❌ 누락'
+    });
+    throw new Error('EmailJS 환경변수가 설정되지 않았습니다. .env 파일을 확인해주세요.');
+  }
+
+  // 이메일 전송
+  const templateParams = {
+    from_name: name,
+    from_phone: phone,
+    message: message,
+    to_email: 'phyun7007@gmail.com'
+  };
+
+  return emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY);
+}
+
+/**
+ * 메시지 표시
+ * @param {HTMLElement} messageDiv - 메시지를 표시할 요소
+ * @param {string} text - 메시지 텍스트
+ * @param {string} type - 메시지 타입 (success/error)
+ */
+function showMessage(messageDiv, text, type) {
+  messageDiv.textContent = text;
+  messageDiv.className = `form-message ${type}`;
+  messageDiv.style.display = 'block';
 }
 
 // DOM이 로드될 때까지 대기하고 초기화 시도

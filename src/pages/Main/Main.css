@@ -122,7 +122,7 @@ body {
 }
 
 /* ===============================================
-   SECOND HERO SECTION
+   SECOND HERO SECTION (주력 상품)
    =============================================== */
 .second-hero-section {
   position: relative;
@@ -131,44 +131,109 @@ body {
   align-items: center;
   overflow: hidden;
   background-color: white;
-  padding: 3rem 2rem;
+  padding: 5rem 2rem;
 }
 
 .second-hero-grid {
   display: grid;
-  grid-template-columns: 30% 70%;
-  gap: 4rem;
+  grid-template-columns: 50% 50%;
+  gap: 5rem;
   align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .second-hero-content {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 2rem;
 }
 
 .second-hero-title {
-  font-size: 1.875rem;
+  font-size: 2.5rem;
   font-weight: 700;
   color: #0f172a;
   line-height: 1.3;
 }
 
 .second-hero-description {
-  font-size: 1rem;
+  font-size: 1.125rem;
   color: #475569;
-  line-height: 1.6;
+  line-height: 1.8;
+}
+
+.second-hero-btn-wrapper {
+  display: flex;
+  margin-top: 1rem;
+}
+
+.second-hero-more-btn {
+  font-family: inherit;
+  font-size: 20px;
+  background: #0f172a;
+  color: white;
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.second-hero-more-btn span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+.second-hero-more-btn svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.second-hero-more-btn:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.second-hero-more-btn:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+.second-hero-more-btn:hover span {
+  transform: translateX(5em);
+}
+
+.second-hero-more-btn:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+
+  to {
+    transform: translateY(-0.1em);
+  }
 }
 
 .second-hero-image {
   position: relative;
-  height: 18rem;
+  height: 600px;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .second-hero-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
@@ -718,25 +783,25 @@ body {
 }
 
 /* 섹션 헤더 */
-.solutions-stack-wrapper::before {
-  content: 'Explore Dotline’s solution';
-  display: block;
+.solutions-header {
   text-align: center;
+  margin-bottom: 4rem;
+  padding: 0 2rem;
+}
+
+.solutions-main-title {
   font-size: 3rem;
   font-weight: 700;
   color: #0f172a;
   margin-bottom: 1rem;
-  padding: 0 2rem;
 }
 
-.solutions-stack-wrapper::after {
-  content: '상세정보를 확인하시려면 자세히 보기를 눌러주세요.';
-  display: block;
-  text-align: center;
+.solutions-main-description {
   font-size: 1.125rem;
   color: #64748b;
-  margin-bottom: 4rem;
-  padding: 0 2rem;
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 /*
@@ -1028,23 +1093,6 @@ body {
 .solution-card-stack[data-index="3"] .solution-card-stack__label {
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   box-shadow: 0 4px 16px rgba(245, 158, 11, 0.35);
-}
-
-/* 각 카드별 배경 악센트 (상단 보더) */
-.solution-card-stack[data-index="0"] .solution-card-stack__inner {
-  border-top: 3px solid #3b82f6;
-}
-
-.solution-card-stack[data-index="1"] .solution-card-stack__inner {
-  border-top: 3px solid #8b5cf6;
-}
-
-.solution-card-stack[data-index="2"] .solution-card-stack__inner {
-  border-top: 3px solid #ec4899;
-}
-
-.solution-card-stack[data-index="3"] .solution-card-stack__inner {
-  border-top: 3px solid #f59e0b;
 }
 
 /* Reduced Motion 선호 사용자를 위한 접근성 */

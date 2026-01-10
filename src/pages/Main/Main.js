@@ -12,6 +12,10 @@ function renderSolutions() {
   // 전체 래퍼 생성
   const solutionsHTML = `
     <section id="solutions" class="solutions-stack-wrapper">
+      <div class="solutions-header">
+        <h2 class="solutions-main-title">Explore Dotline's solution</h2>
+        <p class="solutions-main-description">다양한 산업 분야에 최적화된 도트라인의 LED 솔루션을 만나보세요. 옥외광고판, 렌탈 이벤트, 상업 소매, 회의실 등 고객의 니즈에 맞춘 맞춤형 디스플레이 솔루션을 제공합니다.</p>
+      </div>
       <div class="solutions-stack-container">
         ${solutions.map((solution, index) => `
           <div class="solution-card-stack" data-index="${index}" style="--index: ${index};">

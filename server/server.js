@@ -20,6 +20,15 @@ const app = express();
 const PORT = process.env.PORT || 8001;
 const ROOT_DIR = path.join(__dirname, '..');
 
+// 환경변수 로드 확인 (디버깅)
+console.log('========================================');
+console.log('🔧 환경변수 로드 확인:');
+console.log('  EMAILJS_PUBLIC_KEY:', process.env.EMAILJS_PUBLIC_KEY || '❌ 누락');
+console.log('  EMAILJS_SERVICE_ID:', process.env.EMAILJS_SERVICE_ID || '❌ 누락');
+console.log('  EMAILJS_TEMPLATE_ID:', process.env.EMAILJS_TEMPLATE_ID || '❌ 누락');
+console.log('  PORT:', PORT);
+console.log('========================================');
+
 // ============================================
 // 3. 미들웨어 및 라우트 순서 (중요!)
 // ============================================

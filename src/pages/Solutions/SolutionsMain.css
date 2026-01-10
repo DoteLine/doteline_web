@@ -9,6 +9,11 @@
     box-sizing: border-box;
 }
 
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.6;
+}
+
 /* Main Container */
 .solutions-main {
     width: 100%;

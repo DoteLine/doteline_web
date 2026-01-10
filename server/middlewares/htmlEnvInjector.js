@@ -24,8 +24,6 @@ function htmlEnvInjector(req, res, next) {
                 // 4. {{KAKAO_MAP_API_KEY}} 치환
                 const renderedHtml = html.replace(/\{\{KAKAO_MAP_API_KEY\}\}/g, key);
 
-                console.log(`[HTML Injector] success: ${req.url} -> 키 주입 완료`);
-
                 res.set('Content-Type', 'text/html');
                 return res.send(renderedHtml);
             }

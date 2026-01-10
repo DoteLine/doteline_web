@@ -85,7 +85,6 @@
                 } catch (error) {
                     console.error('========================================');
                     console.error('페이지 로딩 중 오류 발생');
-                    console.error('========================================');
                     console.error('오류 타입:', error.constructor.name);
                     console.error('오류 메시지:', error.message);
                     console.error('오류 스택:', error.stack);
@@ -96,7 +95,6 @@
             }
 
             async loadMainPage() {
-                console.log('[Main Page] Main.html 로딩 시작...');
                 const response = await fetch('/src/pages/Main/Main.html');
 
                 if (!response.ok) {
@@ -104,7 +102,6 @@
                 }
 
                 const html = await response.text();
-                console.log('[Main Page] Main.html 로딩 완료');
 
                 // HTML 파싱 및 body 내용 추출
                 const parser = new DOMParser();
@@ -112,35 +109,34 @@
 
                 // CSS 링크 추가
                 const cssLinks = doc.querySelectorAll('link[rel="stylesheet"]');
-                console.log(`[Main Page] CSS 파일 ${cssLinks.length}개 로딩...`);
                 cssLinks.forEach(link => {
                     const newLink = document.createElement('link');
                     newLink.rel = 'stylesheet';
                     newLink.href = link.getAttribute('href');
                     document.head.appendChild(newLink);
-                    console.log(`  - ${link.getAttribute('href')}`);
                 });
 
                 // body 내용 삽입
                 this.appContainer.innerHTML = doc.body.innerHTML;
-                console.log('[Main Page] HTML 컨텐츠 삽입 완료');
 
-                // JavaScript 파일 동적 로드
-                const scripts = doc.querySelectorAll('script[src]');
-                console.log(`[Main Page] JavaScript 파일 ${scripts.length}개 순차 로딩 시작...`);
+                // JavaScript 파일 동적 로드 (src 있는 것과 인라인 스크립트 모두)
+                const scripts = doc.querySelectorAll('script');
                 for (const script of scripts) {
-                    await this.loadScript(script.getAttribute('src'));
+                    if (script.hasAttribute('src')) {
+                        // 외부 스크립트
+                        await this.loadScript(script.getAttribute('src'));
+                    } else if (script.textContent.trim()) {
+                        // 인라인 스크립트
+                        this.executeInlineScript(script.textContent);
+                    }
                 }
-                console.log('[Main Page] 모든 스크립트 로딩 완료');
             }
 
             loadScript(src) {
                 return new Promise((resolve, reject) => {
-                    console.log(`[Script Loading] 시작: ${src}`);
                     const script = document.createElement('script');
                     script.src = src;
                     script.onload = () => {
-                        console.log(`[Script Loading] ✓ 성공: ${src}`);
                         resolve();
                     };
                     script.onerror = (error) => {
@@ -150,6 +146,16 @@
                     };
                     document.body.appendChild(script);
                 });
+            }
+
+            executeInlineScript(scriptContent) {
+                try {
+                    const script = document.createElement('script');
+                    script.textContent = scriptContent;
+                    document.body.appendChild(script);
+                } catch (error) {
+                    console.error('[Inline Script] ✗ 실행 실패:', error);
+                }
             }
 
             hideLoading() {

@@ -18,13 +18,20 @@ function sendInjectedHtml(res, filePath) {
         }
 
         let html = fs.readFileSync(filePath, 'utf-8');
-        // 환경변수 로드 (PROD 우선, 없으면 DEV)
-        const key = process.env.KAKAO_MAP_API_KEY_PROD || process.env.KAKAO_MAP_API_KEY_DEV || '';
 
-        // {{KAKAO_MAP_API_KEY}} 치환
-        const renderedHtml = html.replace(/\{\{KAKAO_MAP_API_KEY\}\}/g, key);
+        // 카카오 맵 API 키 (PROD 우선, 없으면 DEV)
+        const kakaoKey = process.env.KAKAO_MAP_API_KEY_PROD || process.env.KAKAO_MAP_API_KEY_DEV || '';
 
-        console.log(`[Router] ✅ 키 주입 성공: ${path.basename(filePath)}`);
+        // EmailJS 환경변수
+        const emailjsPublicKey = process.env.EMAILJS_PUBLIC_KEY || '';
+        const emailjsServiceId = process.env.EMAILJS_SERVICE_ID || '';
+        const emailjsTemplateId = process.env.EMAILJS_TEMPLATE_ID || '';
+
+        // 환경변수 치환
+        let renderedHtml = html.replace(/\{\{KAKAO_MAP_API_KEY\}\}/g, kakaoKey);
+        renderedHtml = renderedHtml.replace(/\{\{EMAILJS_PUBLIC_KEY\}\}/g, emailjsPublicKey);
+        renderedHtml = renderedHtml.replace(/\{\{EMAILJS_SERVICE_ID\}\}/g, emailjsServiceId);
+        renderedHtml = renderedHtml.replace(/\{\{EMAILJS_TEMPLATE_ID\}\}/g, emailjsTemplateId);
 
         res.set('Content-Type', 'text/html');
         return res.send(renderedHtml);
@@ -54,24 +61,20 @@ router.get('/info', (req, res) => {
 });
 
 router.get('/product', (req, res) => {
-    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Products', 'Products.html'))
-})
+    sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Products', 'Products.html'));
+});
 
 /**
  * 제품 상세 페이지(productDetail)
  * Query String으로 제품 id전달 /ProductDetail?id=1
  */
 router.get('/productDetail', (req, res) => {
-    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Products', 'ProductDetail.html'))
-})
+    sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Products', 'ProductDetail.html'));
+});
 
 /**
  * 솔루션 소개 페이지 (/solution)
  */
-router.get('/solution', (req, res) => {
-    res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Solutions', 'SolutionsMain.html'));
-});
-
 router.get('/solution', (req, res) => {
     sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Solutions', 'SolutionsMain.html'));
 });

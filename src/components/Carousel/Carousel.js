@@ -99,27 +99,11 @@ function initCarousel() {
     on: {
       // 초기화 완료
       init: function() {
-        console.log('캐러셀 초기화 완료 - 총 슬라이드:', this.slides.length);
-      },
+        },
 
       // 슬라이드 변경 시작
       slideChangeTransitionStart: function() {
         // 슬라이드 전환 시작
-      },
-
-      // 슬라이드 변경 완료
-      slideChangeTransitionEnd: function() {
-        console.log('현재 슬라이드 인덱스:', this.realIndex);
-      },
-
-      // 자동재생 시작
-      autoplayStart: function() {
-        console.log('자동재생 시작');
-      },
-
-      // 자동재생 중지
-      autoplayStop: function() {
-        console.log('자동재생 중지');
       },
 
       // 터치 시작
@@ -193,8 +177,6 @@ function initCarouselPage() {
 
   // 이미지 프리로딩
   preloadCarouselImages();
-
-  console.log('캐러셀 컴포넌트 초기화 완료');
 }
 
 // 페이지 로드 완료 후 실행

@@ -42,25 +42,29 @@
 
   /* Second Hero Section */
   .second-hero-section {
-    min-height: 65vh;
+    min-height: auto;
     padding: 4rem 1.5rem;
   }
 
   .second-hero-grid {
-    grid-template-columns: 35% 65%;
-    gap: 2.5rem;
+    grid-template-columns: 45% 55%;
+    gap: 3rem;
   }
 
   .second-hero-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 
   .second-hero-description {
-    font-size: 0.9375rem;
+    font-size: 1rem;
+  }
+
+  .second-hero-more-btn {
+    font-size: 18px;
   }
 
   .second-hero-image {
-    height: 16rem;
+    height: 500px;
   }
 
   /* About Section */
@@ -321,29 +325,44 @@
   /* Second Hero Section */
   .second-hero-section {
     min-height: auto;
-    padding: 2.5rem 1rem;
+    padding: 3rem 1rem;
   }
 
   .second-hero-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    grid-template-areas:
+      "image"
+      "content";
   }
 
   .second-hero-content {
-    gap: 1rem;
+    gap: 1.5rem;
+    grid-area: content;
   }
 
   .second-hero-title {
-    font-size: 1.25rem;
+    font-size: 1.75rem;
   }
 
   .second-hero-description {
-    font-size: 0.875rem;
-    line-height: 1.6;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .second-hero-btn-wrapper {
+    margin-top: 0.5rem;
+  }
+
+  .second-hero-more-btn {
+    font-size: 16px;
+    padding: 0.6em 0.9em;
+    padding-left: 0.8em;
   }
 
   .second-hero-image {
-    height: 14rem;
+    height: 400px;
+    grid-area: image;
   }
 
   .second-hero-image img {
@@ -667,11 +686,19 @@
   }
 
   .second-hero-title {
-    font-size: 1.125rem;
+    font-size: 1.5rem;
   }
 
   .second-hero-description {
-    font-size: 0.8125rem;
+    font-size: 0.875rem;
+  }
+
+  .second-hero-more-btn {
+    font-size: 15px;
+  }
+
+  .second-hero-image {
+    height: 350px;
   }
 
   .section-title {
@@ -709,8 +736,14 @@
     padding: 2rem 1rem;
   }
 
+  .second-hero-grid {
+    grid-template-columns: 45% 55%;
+    grid-template-areas: unset;
+    gap: 2rem;
+  }
+
   .second-hero-image {
-    height: 12rem;
+    height: 320px;
   }
 }
 
@@ -725,6 +758,23 @@
 
   .direction-btn {
     min-height: 44px;
+  }
+
+  .second-hero-more-btn {
+    min-height: 48px;
+  }
+
+  /* Remove hover effects on second-hero-more-btn */
+  .second-hero-more-btn:hover .svg-wrapper {
+    animation: none;
+  }
+
+  .second-hero-more-btn:hover svg {
+    transform: none;
+  }
+
+  .second-hero-more-btn:hover span {
+    transform: none;
   }
 
   /* Remove hover effects on touch devices */
@@ -765,12 +815,15 @@
 /* TABLET (599px - 1199px) */
 @media (max-width: 1199px) {
   /* 솔루션 섹션 헤더 */
-  .solutions-stack-wrapper::before {
+  .solutions-main-title {
     font-size: 2.25rem;
   }
 
-  .solutions-stack-wrapper::after {
+  .solutions-main-description {
     font-size: 1rem;
+  }
+
+  .solutions-header {
     margin-bottom: 3rem;
   }
 
@@ -844,13 +897,16 @@
     padding: 2.5rem 0 1.5rem;
   }
 
-  .solutions-stack-wrapper::before {
+  .solutions-main-title {
     font-size: 1.75rem;
     margin-bottom: 0.75rem;
   }
 
-  .solutions-stack-wrapper::after {
+  .solutions-main-description {
     font-size: 0.875rem;
+  }
+
+  .solutions-header {
     margin-bottom: 2rem;
   }
 
@@ -959,11 +1015,11 @@
 /* EXTRA SMALL MOBILE (<400px) */
 @media (max-width: 399px) {
   /* 헤더 */
-  .solutions-stack-wrapper::before {
+  .solutions-main-title {
     font-size: 1.5rem;
   }
 
-  .solutions-stack-wrapper::after {
+  .solutions-main-description {
     font-size: 0.8125rem;
   }
 

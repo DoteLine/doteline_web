@@ -1,0 +1,21 @@
+/* ===============================================
+   Product Detail Page Styles
+   =============================================== */
+
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  line-height: 1.6;
+  background-color: #f8fafc;
+}
+
+.page-wrapper {
+  min-height: 100vh;
+  background-color: #f8fafc;
+}
