@@ -2,33 +2,39 @@ const path = require('path');
 const fs = require('fs');
 
 function htmlEnvInjector(req, res, next) {
-    // 1. 요청 경로가 루트(/)이거나 main.html을 포함하는지 확인
-    const isMainPage = req.path === '/' || req.path.toLowerCase().includes('main.html');
+    // 1. 요청 경로 확인 (브라우저가 fetch('/src/pages/Main/Main.html') 하는 경로)
+    // index.html 로딩도 대비하여 루트(/)와 Main.html을 모두 포함
+    const isTarget = req.url.toLowerCase().includes('main.html') || req.url === '/';
 
-    if (isMainPage) {
-        // 2. 실제 파일 위치 (server.js가 server 폴더 안에 있으므로 process.cwd() 사용)
+    if (isTarget) {
+        // 2. 실제 물리적 파일 경로 (Main.html 위치)
         const htmlPath = path.join(process.cwd(), 'src', 'pages', 'Main', 'Main.html');
 
+        // 만약 루트(/) 요청이라면 index.html을 타겟팅
+        const indexPath = path.join(process.cwd(), 'public', 'index.html');
+        const targetPath = req.url === '/' ? indexPath : htmlPath;
+
         try {
-            if (fs.existsSync(htmlPath)) {
-                let html = fs.readFileSync(htmlPath, 'utf-8');
+            if (fs.existsSync(targetPath)) {
+                let html = fs.readFileSync(targetPath, 'utf-8');
 
                 // 3. API 키 가져오기
-                const key = process.env.KAKAO_MAP_API_KEY_PROD || process.env.KAKAO_MAP_API_KEY_DEV;
+                const key = process.env.KAKAO_MAP_API_KEY_PROD || process.env.KAKAO_MAP_API_KEY_DEV || '';
 
-                // 4. 치환 (정규식으로 모든 중괄호 패턴 교체)
-                const renderedHtml = html.replace(/\{\{KAKAO_MAP_API_KEY\}\}/g, key || '');
+                // 4. {{KAKAO_MAP_API_KEY}} 치환
+                const renderedHtml = html.replace(/\{\{KAKAO_MAP_API_KEY\}\}/g, key);
 
-                console.log(`[HTML Injector] ✅ 가로채기 성공! 키 주입 완료 (${req.path})`);
+                console.log(`[HTML Injector] success: ${req.url} -> 키 주입 완료`);
 
-                // 5. 즉시 응답 (이게 중요합니다. next()를 호출하지 않고 여기서 끝냅니다.)
                 res.set('Content-Type', 'text/html');
                 return res.send(renderedHtml);
             }
         } catch (err) {
-            console.error('[HTML Injector] Error:', err);
+            console.error('[HTML Injector] ❌ 에러 발생:', err);
         }
     }
+
+    // 타겟이 아니거나 파일이 없으면 정적 파일 서버로 넘김
     next();
 }
 
