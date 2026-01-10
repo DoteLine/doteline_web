@@ -54,9 +54,6 @@ router.get('/info', (req, res) => {
 });
 
 router.get('/product', (req, res) => {
-<<<<<<< HEAD
-    sendInjectedHtml(res, path.join(ROOT_DIR, 'src', 'pages', 'Products', 'Products.html'));
-=======
     res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Products', 'Products.html'))
 })
 
@@ -73,7 +70,6 @@ router.get('/productDetail', (req, res) => {
  */
 router.get('/solution', (req, res) => {
     res.sendFile(path.join(ROOT_DIR, 'src', 'pages', 'Solutions', 'SolutionsMain.html'));
->>>>>>> jimyung
 });
 
 router.get('/solution', (req, res) => {
