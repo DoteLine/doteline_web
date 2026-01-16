@@ -9,7 +9,30 @@
       <!-- Desktop Menu -->
       <ul class="header-menu desktop-menu">
         <li><a href="/info" class="menu-link">회사 소개</a></li>
-        <li><a href="/product" class="menu-link">제품</a></li>
+
+        <!-- Products Dropdown -->
+        <li class="menu-item-dropdown">
+          <a href="/product" class="menu-link dropdown-trigger">
+            제품
+            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <div class="dropdown-menu" id="productsDropdown">
+            <a href="/product#category-rental" class="dropdown-item">
+              <span class="dropdown-item-title">임대</span>
+            </a>
+            <a href="/product#category-outdoor" class="dropdown-item">
+              <span class="dropdown-item-title">야외</span>
+            </a>
+            <a href="/product#category-indoor" class="dropdown-item">
+              <span class="dropdown-item-title">실내</span>
+            </a>
+            <a href="/product#category-cob" class="dropdown-item">
+              <span class="dropdown-item-title">COB LED</span>
+            </a>
+          </div>
+        </li>
 
         <!-- Solutions Dropdown -->
         <li class="menu-item-dropdown">
@@ -52,7 +75,38 @@
     <div class="mobile-menu" id="mobileMenu">
       <ul class="mobile-menu-list">
         <li><a href="/info" class="menu-link">회사 소개</a></li>
-        <li><a href="/product" class="menu-link">제품</a></li>
+
+        <!-- Mobile Products Dropdown -->
+        <li class="mobile-dropdown">
+          <a href="/product" class="menu-link mobile-dropdown-trigger" id="mobileProductsTrigger">
+            <span class="mobile-dropdown-text">제품</span>
+            <svg class="mobile-dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <ul class="mobile-dropdown-menu" id="mobileProductsDropdown">
+            <li>
+              <a href="/product#category-rental" class="mobile-dropdown-item">
+                <span class="mobile-dropdown-item-title">임대</span>
+              </a>
+            </li>
+            <li>
+              <a href="/product#category-outdoor" class="mobile-dropdown-item">
+                <span class="mobile-dropdown-item-title">야외</span>
+              </a>
+            </li>
+            <li>
+              <a href="/product#category-indoor" class="mobile-dropdown-item">
+                <span class="mobile-dropdown-item-title">실내</span>
+              </a>
+            </li>
+            <li>
+              <a href="/product#category-cob" class="mobile-dropdown-item">
+                <span class="mobile-dropdown-item-title">COB LED</span>
+              </a>
+            </li>
+          </ul>
+        </li>
 
         <!-- Mobile Solutions Dropdown -->
         <li class="mobile-dropdown">

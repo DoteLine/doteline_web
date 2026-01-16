@@ -60,21 +60,25 @@ function renderProductDetail() {
     // 6. 대표 이미지들 슬라이드쇼로 표시
     const mainImagesContainer = document.getElementById('main-images-container');
     const slideshowDots = document.getElementById('slideshow-dots');
+    const sideImagesContainer = document.getElementById('side-images-container');
 
     if (product.images && product.images.length > 0) {
         mainImagesContainer.innerHTML = ''; // 초기화
         slideshowDots.innerHTML = ''; // 초기화
+        sideImagesContainer.innerHTML = ''; // 초기화
 
         let currentSlide = 0;
         const dots = [];
+        const sideImages = [];
 
         // 슬라이드 트랙 생성
         const slideTrack = document.createElement('div');
         slideTrack.className = 'slideshow-track';
         mainImagesContainer.appendChild(slideTrack);
 
-        // 이미지들 생성
-        product.images.forEach((img, index) => {
+        // 이미지들 생성 (최대 5개)
+        const maxImages = Math.min(product.images.length, 5);
+        product.images.slice(0, maxImages).forEach((img, index) => {
             const imgElement = document.createElement('img');
             imgElement.src = img;
             imgElement.alt = `대표 이미지 ${index + 1}`;
@@ -92,12 +96,23 @@ function renderProductDetail() {
             dot.addEventListener('click', () => goToSlide(index));
             slideshowDots.appendChild(dot);
             dots.push(dot);
+
+            // 사이드 이미지 생성
+            const sideImg = document.createElement('img');
+            sideImg.src = img;
+            sideImg.alt = `썸네일 ${index + 1}`;
+            sideImg.className = index === 0 ? 'side-image active' : 'side-image';
+            sideImg.addEventListener('click', () => goToSlide(index));
+            sideImagesContainer.appendChild(sideImg);
+            sideImages.push(sideImg);
         });
 
         // 슬라이드 변경 함수
         function goToSlide(slideIndex) {
             // 모든 도트의 active 클래스 제거
             dots.forEach(dot => dot.classList.remove('active'));
+            // 모든 사이드 이미지의 active 클래스 제거
+            sideImages.forEach(img => img.classList.remove('active'));
 
             // 현재 슬라이드 업데이트
             currentSlide = slideIndex;
@@ -108,11 +123,13 @@ function renderProductDetail() {
 
             // 해당 도트에 active 클래스 추가
             dots[currentSlide].classList.add('active');
+            // 해당 사이드 이미지에 active 클래스 추가
+            sideImages[currentSlide].classList.add('active');
         }
 
         // 다음 슬라이드로 자동 전환
         function nextSlide() {
-            const nextIndex = (currentSlide + 1) % product.images.length;
+            const nextIndex = (currentSlide + 1) % maxImages;
             goToSlide(nextIndex);
         }
 
