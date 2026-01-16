@@ -1,12 +1,11 @@
 /**
  * 제품 이미지 경로를 자동으로 생성하는 함수
  * @param {string} productName - 제품명(예 : Rental Indoor 500x500mm)
- * @param {number} imageCount - 대표이미지 갯수 (기본값 1)
  * @param {number} detailImageCount - 상세 이미지 갯수 (기본값 7)
  * @returns {object} - bannerImage, images, thumbnail, detailImages 경로
- * 
+ *
  */
-function generateProductImages(productName, imageCount = 1, detailImageCount = 7) {
+function generateProductImages(productName, detailImageCount = 7) {
     // 제품명을 폴더명으로 변환 (공백은 언더바로, 소문자)
     const folderName = productName.toLowerCase().replace(/\s+/g, '_');
 
@@ -19,11 +18,14 @@ function generateProductImages(productName, imageCount = 1, detailImageCount = 7
     // 배너 이미지
     const bannerImage = `${basePath}/${fileName}_1_head_copy.jpg`
 
-    // 대표이미지 배열 생성
-    const images = [];
-    for(let i = 0; i <imageCount; i++) {
-        images.push(`${basePath}/${fileName}_2_Product_Image${i > 0 ? i : ''}.jpg`);
-    }
+    // 대표이미지 배열 생성 (총 5개: Product_Image, Product_Image1 ~ Product_Image4)
+    const images = [
+        `${basePath}/${fileName}_2_Product_Image.jpg`,  // 첫 번째는 숫자 없음
+        `${basePath}/${fileName}_2_Product_Image1.jpg`,
+        `${basePath}/${fileName}_2_Product_Image2.jpg`,
+        `${basePath}/${fileName}_2_Product_Image3.jpg`,
+        `${basePath}/${fileName}_2_Product_Image4.jpg`
+    ];
 
 
     // 썸네일
@@ -60,7 +62,7 @@ const productsData = {
             id : 11, 
             name: 'Rental Indoor 500x500mm', 
             category: 'rental',
-            ...generateProductImages('Rental Indoor 500x500mm', 3, 7),
+            ...generateProductImages('Rental Indoor 500x500mm', 7),
             specs: {
                 options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
                 tags: ['LED Screen', 'LED Display'],
@@ -71,7 +73,7 @@ const productsData = {
             id : 12, 
             name: 'Rental Indoor 500x1000mm', 
             category: 'rental',
-            ...generateProductImages('Rental Indoor 500x1000mm', 3, 7),
+            ...generateProductImages('Rental Indoor 500x1000mm', 7),
             specs: {
                 options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
                 tags: ['LED Screen', 'LED Display'],
@@ -82,9 +84,9 @@ const productsData = {
             id : 13, 
             name: 'Rental Outdoor 500x500mm', 
             category: 'rental',
-            ...generateProductImages('Rental Outdoor 500x500mm', 3, 7),
+            ...generateProductImages('Rental Outdoor 500x500mm', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P2.976', 'P3.91', 'P4.81'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -93,9 +95,9 @@ const productsData = {
             id : 14, 
             name: 'Rental Outdoor 500x1000mm', 
             category: 'rental',
-            ...generateProductImages('Rental Outdoor 500x1000mm', 3, 7),
+            ...generateProductImages('Rental Outdoor 500x1000mm', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P2.976', 'P3.91', 'P4.81'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -104,9 +106,9 @@ const productsData = {
             id : 15,
             name: 'Rental Curved 500x1000mm',
             category: 'rental',
-            ...generateProductImages('Rental Curved 500x1000mm', 3, 7),
+            ...generateProductImages('Rental Curved 500x1000mm', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P2.976', 'P3.91', 'P4.81'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -115,9 +117,9 @@ const productsData = {
             id : 16,
             name: 'Rental Curved 500x500mm',
             category: 'rental',
-            ...generateProductImages('Rental Curved 500x500mm', 3, 7),
+            ...generateProductImages('Rental Curved 500x500mm', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P2.976', 'P3.91', 'P4.81'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -128,9 +130,9 @@ const productsData = {
             id : 21,
             name: 'Outdoor Die-casting',
             category: 'outdoor',
-            ...generateProductImages('Outdoor Die-casting', 3, 7),
+            ...generateProductImages('Outdoor Die-casting', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P2.976', 'P3.91', 'P4.81'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -139,9 +141,9 @@ const productsData = {
             id : 22,
             name: 'Outdoor Simple',
             category: 'outdoor',
-            ...generateProductImages('Outdoor Simple', 3, 7),
+            ...generateProductImages('Outdoor Simple', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P2', 'P2.5', 'P3', 'P4', 'P5', 'P6', 'P8', 'P10'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -150,9 +152,9 @@ const productsData = {
             id : 23,
             name: 'Outdoor Standard',
             category: 'outdoor',
-            ...generateProductImages('Outdoor Standard', 3, 7),
+            ...generateProductImages('Outdoor Standard', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P2', 'P2.5', 'P3', 'P4', 'P5', 'P6', 'P8', 'P10'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -161,9 +163,9 @@ const productsData = {
             id : 24,
             name: 'Stadium Screen',
             category: 'outdoor',
-            ...generateProductImages('Stadium Screen', 3, 7),
+            ...generateProductImages('Stadium Screen', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P4', 'P5', 'P6.67', 'P8', 'P10', 'P13.33'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -174,9 +176,9 @@ const productsData = {
             id : 31,
             name: 'GOB Waterproof',
             category: 'indoor',
-            ...generateProductImages('GOB Waterproof', 3, 7),
+            ...generateProductImages('GOB Waterproof', 12),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P1.25', 'P1.53', 'P1.86', 'P2', 'P2.5', 'P3.076', 'P4'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -185,9 +187,9 @@ const productsData = {
             id : 32,
             name: '16-9 Golden Ratio',
             category: 'indoor',
-            ...generateProductImages('16-9 Golden Ratio', 3, 7),
+            ...generateProductImages('16-9 Golden Ratio', 12),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P1.25', 'P1.53', 'P1.86', 'P2', 'P2.5'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -196,9 +198,9 @@ const productsData = {
             id : 33,
             name: 'Indoor Die-casting',
             category: 'indoor',
-            ...generateProductImages('Indoor Die-casting', 3, 7),
+            ...generateProductImages('Indoor Die-casting', 12),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P1.25', 'P1.53', 'P1.86', 'P2', 'P2.5', 'P3.076', 'P4'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -207,9 +209,9 @@ const productsData = {
             id : 34,
             name: 'Indoor Aluminum',
             category: 'indoor',
-            ...generateProductImages('Indoor Aluminum', 3, 7),
+            ...generateProductImages('Indoor Aluminum', 12),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P1.25', 'P1.53', 'P1.86', 'P2', 'P2.5', 'P3.076', 'P4'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -218,9 +220,9 @@ const productsData = {
             id : 35,
             name: 'Indoor Flexible',
             category: 'indoor',
-            ...generateProductImages('Indoor Flexible', 3, 7),
+            ...generateProductImages('Indoor Flexible', 12),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P1.25', 'P1.53', 'P1.86', 'P2', 'P2.5', 'P3.076', 'P4'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -229,9 +231,9 @@ const productsData = {
             id : 36,
             name: 'Indoor Standard',
             category: 'indoor',
-            ...generateProductImages('Indoor Standard', 3, 7),
+            ...generateProductImages('Indoor Standard', 12),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['P1.25', 'P1.53', 'P1.86', 'P2', 'P2.5', 'P3.076', 'P4'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -243,9 +245,9 @@ const productsData = {
             id : 41,
             name: 'COB_P0.7',
             category: 'cob',
-            ...generateProductImages('COB_P0.7', 3, 7),
+            ...generateProductImages('COB_P0.7', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['Extreme HD', '16:9 ratio', 'high gray scale'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -254,9 +256,9 @@ const productsData = {
             id : 42,
             name: 'COB_P0.9',
             category: 'cob',
-            ...generateProductImages('COB_P0.9', 3, 7),
+            ...generateProductImages('COB_P0.9', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['Extreme HD', '16:9 ratio', 'high gray scale'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }
@@ -265,9 +267,9 @@ const productsData = {
             id : 41,
             name: 'COB_P1.2',
             category: 'cob',
-            ...generateProductImages('COB_P1.2', 3, 7),
+            ...generateProductImages('COB_P1.2', 7),
             specs: {
-                options: ['P1.953', 'P2.5', 'P2.604', 'P2.976', 'P3.91'],
+                options: ['Extreme HD', '16:9 ratio', 'high gray scale'],
                 tags: ['LED Screen', 'LED Display'],
                 description: '익스트림 HD',
             }

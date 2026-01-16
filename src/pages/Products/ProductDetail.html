@@ -18,60 +18,56 @@
         <!-- Header Component -->
         <div id="header-container"></div>
 
+        <!-- 배너 이미지 -->
+        <section class="banner-section" id="product-banner">
+            <div class="banner-background">
+                <div class="banner-content">
+                    <h1 id="banner-product-name"></h1>
+                    <p id="banner-product-options" class="banner-subtitle"></p>
+                </div>
+            </div>
+        </section>
+
         <!-- Product Detail Section -->
         <section class="product-detail-section">
-            <!-- 뒤로 가기 -->
-            <a href="/product" style="display: inline-block; margin: 20px; text-decoration: none; color: #333;">
-                ← 목록으로 돌아가기
-            </a>
+        <div class="container">
+            <!-- 제품 정보 메인 영역 (좌우 분할) -->
+            <div class="product-main-layout">
+                <!-- 좌측: 대표 이미지 슬라이드 -->
+                <div class="product-left">
+                    <div id="main-images-section">
+                        <div class="slideshow-container">
+                            <div id="main-images-container" class="slideshow-wrapper"></div>
+                            <div class="slideshow-dots" id="slideshow-dots"></div>
+                        </div>
+                    </div>
+                </div>
 
-            <hr>
+                <!-- 우측: 제품 정보 -->
+                <div class="product-right">
+                    <!-- 제품명 -->
+                    <div id="product-info">
+                        <h1 id="product-name">제품명</h1>
+                    </div>
 
-            <!-- 제품 기본 정보 -->
-            <div id="product-info" style="padding: 20px;">
-                <h1 id="product-name">제품명</h1>
-                <p id="product-category" style="font-size: 16px; color: #666;">카테고리</p>
-                <p id="product-description" style="font-size: 18px; margin: 10px 0;">설명</p>
+                    <!-- 제품 옵션 -->
+                    <div id="options-section">
+                        <p id="options-text" class="options-display"></p>
+                    </div>
+
+                    <!-- 제품 태그 -->
+                    <div id="tags-section">
+                        <h3>카테고리</h3>
+                        <div id="tags-container" class="tags-list"></div>
+                    </div>
+                </div>
             </div>
-
-            <hr>
-
-            <!-- 배너 이미지 -->
-            <div id="banner-section" style="padding: 20px; text-align: center;">
-                <img id="banner-image" src="" alt="배너" style="max-width: 100%; height: auto;">
-            </div>
-
-            <hr>
-
-            <!-- 대표 이미지들 -->
-            <div id="main-images-section" style="padding: 20px;">
-                <h2>대표 이미지</h2>
-                <div id="main-images-container" style="display: flex; flex-wrap: wrap; gap: 10px;"></div>
-            </div>
-
-            <hr>
-
-            <!-- 제품 태그 -->
-            <div id="tags-section" style="padding: 20px;">
-                <h2>태그</h2>
-                <div id="tags-container"></div>
-            </div>
-
-            <hr>
-
-            <!-- 제품 옵션 -->
-            <div id="options-section" style="padding: 20px;">
-                <h2>옵션</h2>
-                <div id="options-container"></div>
-            </div>
-
-            <hr>
 
             <!-- 상세 이미지들 -->
             <div id="detail-images-section" style="padding: 20px;">
-                <h2>제품 상세 정보</h2>
                 <div id="detail-images-container"></div>
             </div>
+        </div>
         </section>
 
 
