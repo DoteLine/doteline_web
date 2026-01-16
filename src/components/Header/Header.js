@@ -46,6 +46,9 @@ function initHeader() {
   // 모바일 솔루션 드롭다운 토글
   initMobileSolutionsDropdown();
 
+  // 모바일 제품 드롭다운 토글
+  initMobileProductsDropdown();
+
   console.log('Header initialized successfully');
   return true;
 }
@@ -121,6 +124,68 @@ function initMobileSolutionsDropdown() {
   `).join('');
 
   mobileDropdownMenu.innerHTML = mobileDropdownHTML;
+
+  // 모바일 드롭다운 토글 기능 (텍스트 클릭 시 페이지 이동, 그 외 클릭 시 드롭다운)
+  mobileDropdownTrigger.addEventListener('click', (e) => {
+    const target = e.target;
+    const clickedOnText = target.classList.contains('mobile-dropdown-text');
+
+    if (clickedOnText) {
+      // 텍스트 클릭: 페이지로 이동 (기본 링크 동작)
+      // 모바일 메뉴 닫기
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      if (mobileMenu && mobileMenuBtn) {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+      }
+    } else {
+      // 화살표나 공백 클릭: 드롭다운 토글
+      e.preventDefault();
+      e.stopPropagation();
+
+      const isOpen = mobileDropdownMenu.classList.contains('active');
+
+      if (isOpen) {
+        mobileDropdownMenu.classList.remove('active');
+        mobileDropdownTrigger.classList.remove('active');
+      } else {
+        mobileDropdownMenu.classList.add('active');
+        mobileDropdownTrigger.classList.add('active');
+      }
+    }
+  });
+
+  // 모바일 드롭다운 아이템 클릭 시 메뉴 닫기
+  const mobileDropdownItems = mobileDropdownMenu.querySelectorAll('.mobile-dropdown-item');
+  mobileDropdownItems.forEach(item => {
+    item.addEventListener('click', () => {
+      // 드롭다운 닫기
+      mobileDropdownMenu.classList.remove('active');
+      mobileDropdownTrigger.classList.remove('active');
+
+      // 전체 모바일 메뉴도 닫기
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      if (mobileMenu && mobileMenuBtn) {
+        mobileMenu.classList.remove('active');
+        mobileMenuBtn.classList.remove('active');
+      }
+    });
+  });
+}
+
+/**
+ * 모바일 제품 드롭다운 초기화
+ */
+function initMobileProductsDropdown() {
+  const mobileDropdownTrigger = document.getElementById('mobileProductsTrigger');
+  const mobileDropdownMenu = document.getElementById('mobileProductsDropdown');
+
+  if (!mobileDropdownTrigger || !mobileDropdownMenu) {
+    console.warn('Mobile products dropdown not found');
+    return;
+  }
 
   // 모바일 드롭다운 토글 기능 (텍스트 클릭 시 페이지 이동, 그 외 클릭 시 드롭다운)
   mobileDropdownTrigger.addEventListener('click', (e) => {
