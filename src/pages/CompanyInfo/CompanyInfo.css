@@ -33,8 +33,7 @@ body {
    =============================================== */
 .company-hero {
   position: relative;
-  margin-top: 80px;
-  min-height: 75vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -247,6 +246,7 @@ body {
 /* Desktop (max-width: 1199px) */
 @media (max-width: 1199px) {
   .company-hero {
+    min-height: 100vh;
     padding: 7rem 2rem;
   }
 
@@ -270,7 +270,7 @@ body {
 /* Tablet (max-width: 959px) */
 @media (max-width: 959px) {
   .company-hero {
-    min-height: 65vh;
+    min-height: 100vh;
     padding: 6rem 1.5rem;
   }
 
@@ -303,8 +303,7 @@ body {
 /* Mobile (max-width: 599px) */
 @media (max-width: 599px) {
   .company-hero {
-    margin-top: 60px;
-    min-height: 60vh;
+    min-height: 100vh;
     padding: 4rem 1rem;
   }
 

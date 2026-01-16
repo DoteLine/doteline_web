@@ -10,7 +10,7 @@ const solutionsData = {
         thumbnail: '/resources/solutionpage/outdoor_billboard/Cover.jpg',
         // 상세 페이지용 데이터
         heroImage: '/resources/solutionpage/outdoor_billboard/Hero.jpg',
-        heroTitle: 'Solution 1',
+        heroTitle: '옥외광고판',
         secondHeroImage: '/resources/solutionpage/outdoor_billboard/Second_Hero.jpg',
         secondHeroTitle: '3D 스크린',
         secondHeroDescription: '옥외 대형 스크린 무감각 3D는 초고화질 무감각 3D 디스플레이 단말기와 LED디스플레이의 결합, 그리고 디지털 콘텐츠와 무감각 3D 기술의 혁신적인 결합을 통해 시각적 효과와 예술적 아름움을 겸비한 새로운 광고 모델을 창출합니다.',
@@ -74,7 +74,7 @@ const solutionsData = {
         thumbnail: '/resources/solutionpage/rental_event/Cover.jpg',
         // 상세 페이지용 데이터
         heroImage: '/resources/solutionpage/rental_event/Hero.jpg',
-        heroTitle: 'Solution 2',
+        heroTitle: '렌탈 및 이벤트',
         secondHeroImage: '/resources/solutionpage/rental_event/Second_Hero.jpg',
         secondHeroTitle: '곡면 LED 스크린 대여',
         secondHeroDescription: '곡면 LED 디스플레이는 공연 예술 현장, 파빌리온, 과학 기술 박물관, 야외 미디어 등 다양한 분야에서 활용될 수 있습니다. 이러한 장소들은 일반적으로 관객의 시선을 사로잡고 영상 효과를 향상시킬 수 있는 디스플레이 장치를 필요로 하는데, 곡면 LED 디스플레이는 이러한 요구에 부응하여 몰입감 있고 매력적인 영상 효과를 제공할 수 있습니다.',
@@ -110,7 +110,7 @@ const solutionsData = {
         thumbnail: '/resources/solutionpage/commercial_retail/Cover.jpg',
         // 상세 페이지용 데이터
         heroImage: '/resources/solutionpage/commercial_retail/Hero.jpg',
-        heroTitle: 'Solution 3',
+        heroTitle: '상업 및 소매',
         secondHeroImage: '/resources/solutionpage/commercial_retail/Second_Hero.jpg',
         secondHeroTitle: '쇼핑몰 LED 스크린',
         secondHeroDescription: '쇼핑몰 LED 디스플레이는 상품 가격, 행사 정보 표시뿐만 아니라 동적 광고, 실시간 뉴스, 영화 예고편 등을 재생하는 데에도 사용될 수 있습니다. 이는 매장과 고객을 연결하는 다리 역할을 하여 고객이 필요한 정보에 쉽게 접근하고 쇼핑 경험을 향상시킬 수 있도록 해줍니다.',
@@ -150,7 +150,7 @@ const solutionsData = {
         thumbnail: '/resources/solutionpage/conference_room/Cover.jpg',
         // 상세 페이지용 데이터
         heroImage: '/resources/solutionpage/conference_room/Hero.jpg',
-        heroTitle: 'Solution 4',
+        heroTitle: '컨퍼런스 룸',
         secondHeroImage: '/resources/solutionpage/conference_room/Second_Hero.jpg',
         secondHeroTitle: 'COB 회의용 LED 스크린',
         secondHeroDescription: '회의실 LED 디스플레이는 현대 기업 및 조직의 회의 환경에서 중요한 역할을 합니다. 프레젠테이션, 데이터 시각화, 화상 회의 등 다양한 정보 전달에 널리 사용되어 회의 효율성과 소통의 질을 향상시킵니다.',
@@ -178,7 +178,7 @@ const solutionsData = {
         thumbnail: '/resources/solutionpage/exhibition/Cover.jpg',
         // 상세 페이지용 데이터
         heroImage: '/resources/solutionpage/exhibition/Hero.jpg',
-        heroTitle: 'Solution 5',
+        heroTitle: '전시회',
         secondHeroImage: '/resources/solutionpage/exhibition/SecondHero.jpg',
         secondHeroTitle: '독창적인 모양의 LED 스크린',
         secondHeroDescription: '독특한 형태는 전시장에 풍부한 아름다움을 더합니다. 맞춤 제작 상품이기 때문에 건물의 전체적인 구조와 환경에 더욱 잘 어울립니다. 주변 환경과 완벽하게 조화를 이루며, 독특한 형태로 인한 부자연스러움을 유발하지 않습니다.',
@@ -214,7 +214,7 @@ const solutionsData = {
         thumbnail: '/resources/solutionpage/sports/Cover.jpg',
         // 상세 페이지용 데이터
         heroImage: '/resources/solutionpage/sports/Hero.jpg',
-        heroTitle: 'Solution 6',
+        heroTitle: '스포츠',
         secondHeroImage: '/resources/solutionpage/sports/SecondHero.jpg',
         secondHeroTitle: '스포츠 경기장 LED 스크린',
         secondHeroDescription: '경기장 주변에 설치되어 경기장 주변에 광고를 게재하는 데 사용되며, 시스템 소프트웨어 제어를 통해 광고 순환, 풍부한 콘텐츠, 우수한 성능을 구현할 수 있습니다.',
@@ -242,7 +242,7 @@ const solutionsData = {
         thumbnail: '/resources/solutionpage/transportation/Cover.jpg',
         // 상세 페이지용 데이터
         heroImage: '/resources/solutionpage/transportation/Hero.jpg',
-        heroTitle: 'Solution 7',
+        heroTitle: '대중교통',
         secondHeroImage: '/resources/solutionpage/transportation/SecondHero.jpg',
         secondHeroTitle: '지하철 광고 LED 스크린',
         secondHeroDescription: '지하철 LED 전광판은 유동 인구가 많은 최적의 위치에 설치되어 고화질 영상과 넓은 시야각을 제공함으로써 많은 승객의 시선을 사로잡고 브랜드 홍보에 효과적인 광고수단으로 활용되어 광고 수익 창출에 중요한 역할을 하고 있습니다.',
@@ -274,7 +274,7 @@ const solutionsData = {
         thumbnail: '/resources/solutionpage/broadcast_film/Cover.jpg',
         // 상세 페이지용 데이터
         heroImage: '/resources/solutionpage/broadcast_film/Hero.jpg',
-        heroTitle: 'Solution 8',
+        heroTitle: '방송 및 영화',
         secondHeroImage: '/resources/solutionpage/broadcast_film/SecondHero.jpg',
         secondHeroTitle: '미디어 라이브 LED 디스플레이',
         secondHeroDescription: '이 제품은 높은 밝기와 낮은 회색조, 끊김 없는 화면 전환, 선명한 색상, 섬세하고 생생한 영상 등의 특징을 갖추고 있어 화려하고 인터랙티브한 생방송 환경을 조성하여 라이브 방송을 더욱 즐겁게 만들고 팬들에게 맞춤형 시각적 경험을 선사합니다.',
