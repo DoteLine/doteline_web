@@ -198,7 +198,7 @@ const productsData = {
             id : 33,
             name: 'Indoor Die-casting',
             category: 'indoor',
-            ...generateProductImages('Indoor Die-casting', 12),
+            ...generateProductImages('Indoor Die-casting', 18),
             specs: {
                 options: ['P1.25', 'P1.53', 'P1.86', 'P2', 'P2.5', 'P3.076', 'P4'],
                 tags: ['LED Screen', 'LED Display'],
